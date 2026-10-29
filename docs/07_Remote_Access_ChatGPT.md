@@ -48,7 +48,7 @@ Under **ChatGPT / tunnel access without sign-in**, choose a level. It applies im
 |---|---|
 | **Off** | Nothing (default) |
 | **Read + plan** | Read the project and prepare plans. Approval stays with you in Unreal. |
-| **Approve + execute** | Also approve plans and run changes. eXe asks you to confirm this level. |
+| **Approve + execute** | Also approve plans and run changes. eXe shows a warning and you must confirm it before this level applies. |
 
 When sign-in is active, this switch does not apply. YOLO never covers access without sign-in.
 
