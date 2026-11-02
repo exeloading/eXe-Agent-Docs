@@ -48,7 +48,7 @@ Open the **eXe Agent** window in one of three ways:
 - **Window → eXe Agent**
 - **Ctrl+Shift+Space** (you can change it under **Editor Preferences → Keyboard Shortcuts**)
 
-The header of the window shows your project name and the connection state. Expected: **Connected**.
+The header of the window shows your project name and whether eXe is running. Expected: **eXe running**.
 
 For details, open **Settings → Connection**. Expected:
 

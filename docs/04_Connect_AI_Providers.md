@@ -18,6 +18,8 @@ Keys are saved for your Windows user in Windows Credential Manager. **Remove sav
 
 Model usage is billed by your provider under your own account. The chat shows the token usage your provider reports. Optionally enter prices per 1M tokens (input; output; cached input; currency, for example `3; 15; 0.3; USD`) to see costs.
 
+**Chat length** sets how long a chat may grow before eXe compacts it into a summary (default 500k tokens, recommended 200k). Longer chats cost more, because the model reads the whole chat again for every reply. See [Long chats](03_Agent_Window.md#long-chats).
+
 ### Local models
 
 Choose **Local model** and enter the address of your local server. The default is `http://127.0.0.1:11434/v1` (Ollama). Any server with an OpenAI-compatible `/v1` API and tool support works the same way. A key is only needed if your local server asks for one.

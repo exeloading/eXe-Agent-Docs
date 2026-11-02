@@ -14,10 +14,12 @@ First public release for Unreal Engine 5.8. eXe Agent lets you plan, approve, ex
 - Full project builds through Unreal Build Tool. eXe closes the editor; you open the project again after the build.
 - Play in Editor tests with screenshots after game steps, including multiplayer runs.
 - **Tools** view without an AI provider: asset checks, level check, Blueprint explanation, dependencies, clean-up report and project build.
-- Connection for Claude Code, Codex and Claude Desktop (eXe copies the start command, you run it) and MCP access for local clients.
+- Connection for Claude Code, Codex and Claude Desktop (eXe copies the start command, you run it in PowerShell or Command Prompt) and MCP access for local clients.
+- Blender check through the free add-on MCP for Blender, and your own local MCP servers as extra tools for Claude Code and Codex.
 - Optional remote access from ChatGPT through your own tunnel, with optional sign-in.
 - Optional asset generation with your own key (Meshy, Tripo, OpenAI, Stability AI, ElevenLabs) or your own local server.
-- Power Write and YOLO switches, project rules, Auto Save.
+- Power Write and YOLO switches, project rules; approved jobs save the assets they change.
+- Chat length setting with automatic compaction, **Compact chat now** and **Continue in a new chat**.
 - Interface in English, German, Japanese, Simplified Chinese, Korean, Spanish and French; separate reply language.
 - Built-in skill guides for common Unreal workflows.
 

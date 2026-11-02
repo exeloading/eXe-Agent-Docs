@@ -17,6 +17,8 @@ All eXe network endpoints listen on `127.0.0.1` only (by default ports 8798 to 8
 | Claude Code, Codex, Claude Desktop | What that client sends to its provider | Anthropic or OpenAI under your account |
 | ChatGPT remote access | Requests and answers through your tunnel | Your tunnel provider, your sign-in service and OpenAI |
 | Asset generation | Your description, and for image to 3D the source image; eXe asks before each request | The service you chose (Meshy, Tripo, OpenAI, Stability AI, ElevenLabs) or your local server |
+| Blender through MCP for Blender | Scene data and models, locally between Blender and eXe on your PC | Nobody outside your PC |
+| Your own MCP servers | Whatever those servers do; they run in Claude Code or Codex outside eXe | Depends on the server you added |
 | Bundled VibeUE tools with online features | Only when an AI calls such a tool, for example a web search query | The services listed in `Resources/THIRD_PARTY_NOTICES.md` |
 
 Check your provider's data policy before you send confidential project content.
@@ -42,6 +44,6 @@ eXe Agent includes third-party components, among them VibeUE (MIT license) and P
 - `Resources/THIRD_PARTY_SOFTWARE.json`
 - `Resources/EXPERIMENTAL_DEPENDENCIES.md`
 
-Unreal Engine plugins that eXe uses are part of your Engine installation and are not redistributed.
+Unreal Engine plugins that eXe uses are part of your Engine installation and are not redistributed. The Blender add-on MCP for Blender and any MCP servers you add are not part of eXe Agent; you install them yourself under their own licenses.
 
 Previous: [Changelog](10_Changelog.md) · [Documentation Index](INDEX.md)

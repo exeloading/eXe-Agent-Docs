@@ -2,14 +2,14 @@
 
 Everything in eXe happens in one dockable editor window called **eXe Agent**. Open it with the **eXe Agent** toolbar button, **Window → eXe Agent** or **Ctrl+Shift+Space**. The arrow next to the toolbar button opens a view directly.
 
-The header shows your project and the connection state (**Connected**, **Connected · n job(s) running**, **Starting...** or **Reconnecting...**). Below it are four views: **Chat**, **Jobs**, **Tools** and **Settings**. When a job needs your decision, the view label reads **Jobs (n)** and the toolbar tooltip says so too.
+The header shows your project and the state of eXe (**eXe running**, **eXe running · n job(s) running**, **Starting...** or **Reconnecting...**). It shows that eXe itself answers, not whether an AI client such as Claude Code is connected. Below it are four views: **Chat**, **Jobs**, **Tools** and **Settings**. When a job needs your decision, the view label reads **Jobs (n)** and the toolbar tooltip says so too.
 
 ## Chat
 
 You describe tasks in your own words. eXe reads the project, proposes a plan for your approval and then works in the editor.
 
 - **Chats sidebar:** **+ New chat**, a search box and the chats of this project. **Show older chats** loads more. The arrows hide and show the sidebar.
-- **AI controller:** the button at the top right shows the provider and model of the current chat. Click it to change provider, model and key for new chats ([Connect AI Providers](04_Connect_AI_Providers.md)). An existing chat keeps the controller it started with.
+- **AI controller:** the button at the top right shows the provider and model of the current chat. Click it to change provider, model, key and chat length for new chats ([Connect AI Providers](04_Connect_AI_Providers.md)). An existing chat keeps the controller it started with.
 - **Message box:** **Enter** sends, **Shift+Enter** adds a line.
   - **+ Image** attaches up to 3 images (or drop them on the box). The model must be able to read images.
   - **+ Selection** adds the actors selected in the level and the assets selected in the Content Browser to your message.
@@ -17,8 +17,17 @@ You describe tasks in your own words. eXe reads the project, proposes a plan for
 - While eXe works, **Stop** stops the reply. You can still type: **Add note** passes a note to the running work.
 - **Continue** appears when a turn reached its step limit or was paused at a safe point.
 - **Inspect interrupted step** appears when an editor step was interrupted and its result is unknown. Nothing is repeated automatically.
-- The **…** menu offers **Continue work**, **Refresh** and **Export chat as Markdown**.
-- The chat shows the token usage reported by your provider. Optionally enter your provider's prices per 1M tokens in the AI controller to see costs.
+- The **…** menu offers **Continue work**, **Compact chat now**, **Continue in a new chat**, **Refresh** and **Export chat as Markdown**.
+- Below each reply, the chat shows the token usage reported by your provider and the current chat length. Optionally enter your provider's prices per 1M tokens in the AI controller to see costs.
+
+### Long chats
+
+The AI reads the whole chat again for every reply, so long chats cost more. The **Chat length** in the AI controller (100k to 900k tokens, default 500k, recommended 200k) sets when eXe compacts a chat: the AI writes a summary and continues from it. All messages stay visible, and a note in the chat marks where the AI continues from the summary. If the model allows less, eXe compacts earlier.
+
+- **Compact chat now** summarizes the chat right away, so further replies cost less.
+- **Continue in a new chat** opens a new chat that starts from a summary of this one. The earlier chat stays as it is; **Open that chat** in the new chat leads back to it.
+
+Both work only while the chat is idle.
 
 ### Decision cards
 
@@ -52,7 +61,7 @@ Select a job to see:
 - **Plan and decision:** the full plan text with targets, expected changes, **May change only**, **Must not change** and **May repair**. A long plan is paged; read every page before approving. To approve here, tick **I reviewed this complete plan and approve only its exact scope.** and click **Approve exact plan**. Other buttons, depending on the state: **Approve exact step**, **Request revision**, **Request step repair**, **Allow eXe to build**, **Later**, **Stop work**, **Cancel work**. For a revision or repair, describe what you want in the text box (at least 20 characters).
 - **Progress:** the current and next step.
 - **Result and checks:** how far the result is proven and every check that ran.
-- **Steps:** what each step did. For game tests, **Open PIE screenshot** shows the picture taken after a game step.
+- **Steps:** what each step did. For game tests, **Show PIE screenshot** (or **Picture after game step n**) shows the picture taken after a game step.
 - For finished jobs: **Show changes** and **Undo this job's changes**.
 - **Copy summary** copies a short report. **Copy for support** copies the technical details of the job for a bug report.
 
@@ -89,9 +98,10 @@ Settings are grouped. Use **Search settings** to find an option.
 | Group | What you find there |
 |---|---|
 | **Connection** | Project, Unreal version, eXe Core, project link, editor, the address for AI clients (MCP) and the Unreal MCP status |
-| **General** | Interface language, reply language, changes list, theme, builds, Auto Save, version control, project rules |
+| **General** | Interface language, reply language, changes list, theme, builds, version control, project rules |
 | **Permissions** | Power Write and YOLO ([Permissions and Safety](06_Permissions_And_Safety.md)) |
 | **AI clients (Claude Code, Codex, Claude Desktop)** | Copy start commands, connect, renew or revoke the access token ([Connect AI Providers](04_Connect_AI_Providers.md)) |
+| **Blender and your own MCP servers** | Check a Blender you have open, add more tools for Claude Code and Codex ([Connect AI Providers](04_Connect_AI_Providers.md#blender-and-your-own-mcp-servers)) |
 | **ChatGPT and remote access** | Tunnel access with or without sign-in ([Remote Access with ChatGPT](07_Remote_Access_ChatGPT.md)) |
 | **Asset generation** | Generate 3D models, images and sound effects with your own provider key or local server ([Capabilities](05_Capabilities.md#asset-generation)) |
 | **Advanced** | Diagnostics for support |
@@ -102,6 +112,6 @@ Notes on **General**:
 - **eXe replies in** sets the language of chat answers and plans, independent of the interface language.
 - **Theme** colors the eXe Agent window only. **Custom** lets you pick an accent color on a dark or light background.
 - **Version control:** choose auto detect, Git, Diversion or none. eXe does not commit; you manage commits and conflicts.
-- **Project rules:** each Markdown file in `ProjectDocs/eXe/Rules` is one rule, for example "Put new assets under /Game/MyFeature". Active rules go into every new plan. Rules the AI suggests start as proposals; delete their first line to activate them. **Rules on**, **Rules off**, **Check** and **Open rules folder** control them.
+- **Project rules:** each Markdown file in `ProjectDocs/eXe/Rules` is one rule, for example "Put new assets under /Game/MyFeature". Active rules go into every new plan. Rules the AI suggests start as proposals; delete their first line to activate them. **Rules on**, **Rules off**, **Check** and **Copy rules folder path** control them.
 
 Previous: [Quick Start](02_Quick_Start.md) · [Documentation Index](INDEX.md) · Next: [Connect AI Providers](04_Connect_AI_Providers.md)
