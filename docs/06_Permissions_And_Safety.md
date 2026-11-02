@@ -21,7 +21,9 @@ Project changes made through eXe are checked, backed up and listed for review. I
 
 ## Permissions
 
-**Settings → Permissions → Write modes (all projects of this Windows user)**
+**Settings → Permissions → Write modes (all your projects)**
+
+Both switches apply to all projects of your Windows user.
 
 ### Power Write
 
@@ -40,15 +42,16 @@ Both switches are stored in a file of your Windows user. A program or AI client 
 
 ## Builds
 
-- **Settings → General → Run full builds automatically** applies to the current project only. When it is on, eXe closes the editor and runs Unreal Build Tool for an approved step that needs a full build. When it is off, eXe asks you to build, in the chat (**Build now** / **Later**) or in **Jobs** (**Allow eXe to build** / **Later**).
+- Some C++ changes need a full build: eXe closes the editor and runs Unreal Build Tool, then you open the project again and eXe continues the job.
+- **Settings → General → Run full builds without asking** applies to the current project only. **Off** (default): before a full build that the approved plan does not already include, eXe asks you, in the chat (**Build now** / **Later**) or in **Jobs** (**Allow eXe to build** / **Later**). Choose **Later** to build yourself. **On:** eXe builds right away.
 - When the editor closes, Unreal may ask you to **Save**, **Discard** or **Cancel** unsaved work.
 - eXe never restarts the editor. After the build, open the project again yourself; eXe then continues the job. If the build failed, eXe shows the compiler errors.
 
 eXe only starts Unreal Build Tool from your own Engine installation. It never starts other programs.
 
-## Auto Save
+## Saving
 
-**Settings → General → Auto Save** saves exactly the assets changed by an approved action and nothing else. It is off by default and independent of the build setting. When it is off, Unreal may ask you to save.
+eXe saves the assets an approved job changes, and nothing else. Other unsaved work in the editor stays unsaved, so Unreal may ask whether to save it when the editor closes.
 
 ## Reverting changes
 

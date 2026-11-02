@@ -18,6 +18,8 @@ Keys are saved for your Windows user in Windows Credential Manager. **Remove sav
 
 Model usage is billed by your provider under your own account. The chat shows the token usage your provider reports. Optionally enter prices per 1M tokens (input; output; cached input; currency, for example `3; 15; 0.3; USD`) to see costs.
 
+**Chat length** sets how long a chat may grow before eXe compacts it into a summary (default 500k tokens, recommended 200k). Longer chats cost more, because the model reads the whole chat again for every reply. See [Long chats](03_Agent_Window.md#long-chats).
+
 ### Local models
 
 Choose **Local model** and enter the address of your local server. The default is `http://127.0.0.1:11434/v1` (Ollama). Any server with an OpenAI-compatible `/v1` API and tool support works the same way. A key is only needed if your local server asks for one.
@@ -26,16 +28,32 @@ You install, start and choose local models yourself. Small local models plan les
 
 ## Option 2: Claude Code, Codex or Claude Desktop
 
-If you have the official **Claude Code**, **Codex** or **Claude Desktop** installed and signed in with your own account, you can connect it to eXe. No API key is needed in eXe.
+If you have the official **Claude Code**, **Codex** or **Claude Desktop** installed, you can connect it to eXe with your own account. No API key is needed in eXe. You do not need to start Claude Code or Codex first or sign in beforehand: the copied line starts the client, and it asks you to sign in if needed.
 
 1. Open **Settings → AI clients (Claude Code, Codex, Claude Desktop)**.
-2. Under **Connections**, click **Connect / repair** once. This adds only the `exe-loading` entry to the user configuration of Claude Code, Codex and Claude Desktop. Other MCP entries stay unchanged and the access key is never shown. Restart command windows that are already open and Claude Desktop afterwards.
+2. Under **Connections**, click **Connect / repair** once. This adds only the `exe-loading` entry to the user configuration of Claude Code, Codex and Claude Desktop. Other MCP entries stay unchanged and the access key is never shown. Close terminals that are already open and restart Claude Desktop afterwards.
 3. For Claude Code or Codex, click **Copy Claude Code command** or **Copy Codex command**. eXe shows the copied line.
-4. Open a new **Command Prompt (cmd)**, paste the line and press Enter. Sign in there if the client asks.
+4. Open a new terminal (**PowerShell** or **Command Prompt**), paste the line and press Enter. The client starts. Sign in there if it asks.
 
 The copied line opens the client in an eXe workspace folder for this project that contains the eXe planning workflow. Claude Desktop needs no command: after step 2, restart it and eXe is available there.
 
 eXe never installs these clients and never starts them. They use your own subscription or login. Blueprint, asset and C++ changes still run only through plans you approve.
+
+## Blender and your own MCP servers
+
+Both are in **Settings → Blender and your own MCP servers**.
+
+**Blender.** eXe can read the scene you have open in Blender and bring models into your project. Changes run only through plans you approve. eXe never installs or starts Blender.
+
+1. Install the free add-on **MCP for Blender** in Blender and turn it on.
+2. Keep Blender open and click **Check Blender**.
+
+**Your own MCP servers.** These add more tools to Claude Code and Codex when you start them with the copied line. The eXe chat does not use them.
+
+1. Enter a name and either a command or an address on this PC, then click **Add**. Examples: name `blender`, command `uvx mcp-for-blender`; or name `mytool`, address `http://127.0.0.1:9000/mcp`.
+2. Click **Copy Claude Code command** or **Copy Codex command** again, and start the client with the new line.
+
+These tools run outside eXe's plans, so eXe cannot check or undo what they do. Your client asks you before each use. Add only servers you trust. Never enter keys in this field; a server that needs a key must read it from its own settings. Only addresses on this PC are accepted, and a command path must not contain spaces. You can add up to 8 servers.
 
 **Check status** shows the connection state. **Renew token** replaces the access key. **Revoke token** removes access until you connect again.
 

@@ -18,6 +18,10 @@ Unreal's MCP server is not started.
 
 Hover over the **Unreal MCP** line in **Settings → Connection** to see the exact steps for your case, also when toolsets are missing.
 
+If the server is off when the AI submits a plan, the plan check fails with a technical message that contains `WinError 10061`. It means the same thing: start the server as above and ask the AI to submit the plan again.
+
+If **Settings → Connection** says the address belongs to another Unreal editor, give this project its own port under **Editor Preferences → Model Context Protocol → Server Port Number** and restart the editor.
+
 ## The chat says no AI is connected or the key was rejected
 
 Open the AI controller in **Chat**, choose the provider, enter the model ID and key and click **Save**. Check that the model ID is spelled exactly as your provider lists it.
@@ -25,6 +29,22 @@ Open the AI controller in **Chat**, choose the provider, enter the model ID and 
 ## "The AI provider could not be reached"
 
 Check the address and your internet connection. For a local model, check that your local server is running and the address is correct.
+
+## "The AI provider refused the request for now"
+
+Your provider reports a rate limit or that your account has no credit left. Wait a moment and try again, or check your plan and balance with the provider.
+
+## "The AI model declined this request"
+
+The model refused the request. Rephrase it in a new chat or choose another model under **Connect AI**. Your project and its jobs are not affected.
+
+## "The reply reached the model's output limit"
+
+The model stopped because its answer got too long. Ask for a smaller step.
+
+## "This request is too large for the model" or "This chat has grown too long"
+
+The chat or the request no longer fits the model. Send less at once, or choose **Continue in a new chat** in the **…** menu. See [Long chats](03_Agent_Window.md#long-chats).
 
 ## "The model did not produce a usable tool call"
 
@@ -37,8 +57,8 @@ The AI talked about a plan but did not submit it. Ask it to submit its plan, or 
 ## Claude Code, Codex or Claude Desktop does not see eXe
 
 1. In **Settings → AI clients**, click **Connect / repair**, then **Check status**.
-2. Close command windows that were already open and restart Claude Desktop.
-3. Start Claude Code or Codex with the copied line (**Copy Claude Code command** or **Copy Codex command**) in a new Command Prompt (cmd). Install and sign in to the client yourself.
+2. Close terminals that were already open and restart Claude Desktop.
+3. Start Claude Code or Codex with the copied line (**Copy Claude Code command** or **Copy Codex command**) in a new terminal (PowerShell or Command Prompt). The line starts the client, so do not start it first. Install the client yourself and sign in when it asks.
 
 ## The editor did not reopen after a build
 
@@ -62,7 +82,7 @@ Each editor runs its own eXe with its own jobs and port. **Settings → Connecti
 
 **Does eXe send my project to eXe servers?** No. There are no eXe servers. Data goes only to the AI provider and services you configure. See [Privacy, Costs and Third-Party Software](11_Privacy_Costs_And_Third_Party.md).
 
-**What does it cost to use?** The plugin price once on Fab. AI usage is billed by your provider.
+**What does it cost to use?** The plugin price once on Fab. AI usage is billed by your provider. Long chats cost more per reply; see [Long chats](03_Agent_Window.md#long-chats).
 
 **Can I use it without an AI provider?** Yes, the **Tools** view works without any AI.
 
