@@ -2,7 +2,7 @@
 
 Everything in eXe happens in one dockable editor window called **eXe Agent**. Open it with the **eXe Agent** toolbar button, **Window → eXe Agent** or **Ctrl+Shift+Space**. The arrow next to the toolbar button opens a view directly.
 
-The header shows your project and the state of eXe (**eXe running**, **eXe running · n job(s) running**, **Starting...** or **Reconnecting...**). It shows that eXe itself answers, not whether an AI client such as Claude Code is connected. Below it are four views: **Chat**, **Jobs**, **Tools** and **Settings**. When a job needs your decision, the view label reads **Jobs (n)** and the toolbar tooltip says so too.
+The header shows your project and the state of eXe (**eXe running**, **eXe running · n job(s) running**, **eXe running, no project**, **Starting...** or **Reconnecting...**). **eXe running, no project** means eXe is not linked to the open project yet; see **Settings → Connection**. It shows that eXe itself answers, not whether an AI client such as Claude Code is connected. Below it are four views: **Chat**, **Jobs**, **Tools** and **Settings**. When a job needs your decision, the view label reads **Jobs (n)** and the toolbar tooltip says so too.
 
 ## Chat
 
