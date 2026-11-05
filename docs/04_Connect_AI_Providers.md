@@ -10,7 +10,7 @@ Providers in the chat: **OpenAI**, **Anthropic**, **Gemini**, **DeepSeek** and *
 
 1. In **Chat**, click the AI controller button at the top right (or **Connect an AI controller** on the start page).
 2. Choose the provider.
-3. Enter the model ID exactly as your provider lists it, without spaces. Use a current model from your provider's documentation. eXe needs a model that handles tool calls reliably.
+3. Enter the model ID exactly as your provider lists it, without spaces. The field shows an example for the chosen provider. Use a current model from your provider's documentation. eXe needs a model that handles tool calls reliably.
 4. Enter your API key. When a key is already saved, leaving the field blank keeps it.
 5. Click **Save**.
 

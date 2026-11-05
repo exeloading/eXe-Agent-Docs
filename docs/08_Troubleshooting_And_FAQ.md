@@ -18,13 +18,13 @@ Unreal's MCP server is not started.
 
 Hover over the **Unreal MCP** line in **Settings → Connection** to see the exact steps for your case, also when toolsets are missing.
 
-If the server is off when the AI submits a plan, the plan check fails with a technical message that contains `WinError 10061`. It means the same thing: start the server as above and ask the AI to submit the plan again.
+If the server is off when the AI submits a plan, the plan check stops with `OFFICIAL_MCP_SERVER_NOT_RUNNING` and names these steps. Start the server as above and ask the AI to submit the plan again.
 
 If **Settings → Connection** says the address belongs to another Unreal editor, give this project its own port under **Editor Preferences → Model Context Protocol → Server Port Number** and restart the editor.
 
 ## The chat says no AI is connected or the key was rejected
 
-Open the AI controller in **Chat**, choose the provider, enter the model ID and key and click **Save**. Check that the model ID is spelled exactly as your provider lists it.
+Open the AI controller in **Chat**, choose the provider, enter the model ID and key and click **Save**. Check that the model ID is spelled exactly as your provider lists it, for example `claude-sonnet-5-5`, not `Claude Sonnet 5.5`. The field shows an example for the chosen provider.
 
 ## "The AI provider could not be reached"
 

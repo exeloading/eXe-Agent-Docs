@@ -2,7 +2,7 @@
 
 ## Known Issues
 
-- **Plan check without the Unreal MCP server.** If Unreal's MCP server is not running when the AI submits a plan, the plan check fails with a technical message (`WinError 10061`) instead of a plain hint. Start the server ([Troubleshooting](08_Troubleshooting_And_FAQ.md#unreal-mcp-server-not-running)) and submit the plan again.
+- None at the moment.
 
 New reports are collected in the `#known-issues` channel on [Discord](https://discord.gg/ebW7kKCC25).
 
