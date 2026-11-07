@@ -9,11 +9,11 @@ This documentation takes you from installation to everyday use and covers settin
 | No. | Page | Content |
 |---|---|---|
 | 01 | [Installation](01_Installation.md) | Requirements, install from Fab, Unreal MCP server, update, remove |
-| 02 | [Quick Start](02_Quick_Start.md) | Your first answer and your first approved change |
+| 02 | [Quick Start](02_Quick_Start.md) | Your first answer and your first change |
 | 03 | [The eXe Agent Window](03_Agent_Window.md) | Chat, Jobs, Tools and Settings, the job lifecycle and result levels |
 | 04 | [Connect AI Providers](04_Connect_AI_Providers.md) | API keys, local models, Claude Code, Codex, Claude Desktop, other MCP clients |
 | 05 | [Capabilities](05_Capabilities.md) | What eXe can read and change in Unreal |
-| 06 | [Permissions and Safety](06_Permissions_And_Safety.md) | Approvals, Power Write, YOLO, builds, reverting changes |
+| 06 | [Permissions and Safety](06_Permissions_And_Safety.md) | Approvals, Plan before changes, Power Write, YOLO, builds, reverting changes |
 | 07 | [Remote Access with ChatGPT](07_Remote_Access_ChatGPT.md) | Use eXe from ChatGPT through your own tunnel |
 | 08 | [Troubleshooting and FAQ](08_Troubleshooting_And_FAQ.md) | Common problems and how to ask for help |
 | 09 | [Known Issues and Limitations](09_Known_Issues_And_Limitations.md) | Product boundaries in version 1.0.0 |

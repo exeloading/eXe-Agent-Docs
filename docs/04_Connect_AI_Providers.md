@@ -22,7 +22,7 @@ Model usage is billed by your provider under your own account. The chat shows th
 
 Choose **Local model** and enter the address of your local server. The default is `http://127.0.0.1:11434/v1` (Ollama). Any server with an OpenAI-compatible `/v1` API and tool support works the same way. A key is only needed if your local server asks for one.
 
-You install, start and choose local models yourself. Small local models plan less reliably than large hosted models. If eXe reports that the model did not produce a usable tool call, send the message again or choose a stronger model.
+You install, start and choose local models yourself. eXe sends about 20,000 tokens of instructions and tool descriptions with every request, so set the context length of your local server to at least 32,768 tokens (in Ollama: the **Context length** setting or the environment variable `OLLAMA_CONTEXT_LENGTH`). Small local models plan less reliably than large hosted models. If eXe reports that the model did not produce a usable tool call, send the message again or choose a stronger model.
 
 ## Option 2: Claude Code, Codex or Claude Desktop
 
@@ -31,17 +31,17 @@ If you have the official **Claude Code**, **Codex** or **Claude Desktop** instal
 1. Open **Settings → AI clients (Claude Code, Codex, Claude Desktop)**.
 2. Under **Connections**, click **Connect / repair** once. This adds only the `exe-loading` entry to the user configuration of Claude Code, Codex and Claude Desktop. Other MCP entries stay unchanged and the access key is never shown. Restart command windows that are already open and Claude Desktop afterwards.
 3. For Claude Code or Codex, click **Copy Claude Code command** or **Copy Codex command**. eXe shows the copied line.
-4. Open a new **Command Prompt (cmd)**, paste the line and press Enter. Sign in there if the client asks.
+4. Open a new terminal (**PowerShell** or **Command Prompt**), paste the line and press Enter. This starts the client, so you do not open it first. Sign in there if the client asks.
 
 The copied line opens the client in an eXe workspace folder for this project that contains the eXe planning workflow. Claude Desktop needs no command: after step 2, restart it and eXe is available there.
 
-eXe never installs these clients and never starts them. They use your own subscription or login. Blueprint, asset and C++ changes still run only through plans you approve.
+eXe never installs these clients and never starts them. They use your own subscription or login. Blueprint, asset and C++ changes still run only through eXe: small, clear requests directly, larger work after you approve the plan.
 
 **Check status** shows the connection state. **Renew token** replaces the access key. **Revoke token** removes access until you connect again.
 
 ## Option 3: Other MCP clients on your PC
 
-MCP clients on the same PC that support streamable HTTP can connect to `http://127.0.0.1:8798/mcp` (default). The exact address is shown under **Settings → Connection** as **Address for AI clients (MCP)**. Use your client's documented MCP setup. If a second editor is running, it uses the next free port.
+MCP clients on the same PC that support streamable HTTP can connect to `http://127.0.0.1:8798/mcp` (default). The exact address is shown under **Settings → Connection** as **Address for AI clients (MCP)**. Use your client's documented MCP setup and send the header `Authorization: Bearer <token>`. After **Connect / repair** (Option 2), the token is in the Windows user environment variable `EXE_LOADING_LOCAL_TOKEN`; reference the variable in your client's configuration instead of copying the value. If a second editor is running, it uses the next free port.
 
 ## Option 4: ChatGPT from anywhere
 

@@ -7,8 +7,8 @@ First public release for Unreal Engine 5.8. eXe Agent lets you plan, approve, ex
 
 **Added**
 - One **eXe Agent** window with **Chat**, **Jobs**, **Tools** and **Settings**, opened from the toolbar, **Window → eXe Agent** or **Ctrl+Shift+Space**.
-- Chat in the editor with OpenAI, Anthropic, Gemini, DeepSeek or a local model, with image attachments, selection insert, voice input and Markdown export.
-- Plan, approve, execute and verify workflow with sealed scope and six result levels.
+- Chat in the editor with OpenAI, Anthropic, Gemini, DeepSeek or a local model, with image attachments, selection insert and Markdown export.
+- Plan, approve, execute and verify workflow with sealed scope and six result levels. Small, clear changes you ask for run directly; **Plan before changes** (Automatic, Only when I ask, Always) sets when a plan is shown first.
 - Changes list with diff, keep and revert, and undo per job.
 - Editing of Blueprints, assets, materials, UMG, animation, gameplay systems, levels, audio, VFX and world assets after approval; C++ editing with Power Write.
 - Full project builds through Unreal Build Tool. eXe closes the editor; you open the project again after the build.
@@ -17,9 +17,9 @@ First public release for Unreal Engine 5.8. eXe Agent lets you plan, approve, ex
 - Connection for Claude Code, Codex and Claude Desktop (eXe copies the start command, you run it) and MCP access for local clients.
 - Optional remote access from ChatGPT through your own tunnel, with optional sign-in.
 - Optional asset generation with your own key (Meshy, Tripo, OpenAI, Stability AI, ElevenLabs) or your own local server.
-- Power Write and YOLO switches, project rules, Auto Save.
+- Power Write and YOLO switches, project rules.
 - Interface in English, German, Japanese, Simplified Chinese, Korean, Spanish and French; separate reply language.
-- Built-in skill guides for common Unreal workflows.
+- Built-in workflow guides for planning, execution, verification, inspection and debugging.
 
 **Compatibility**
 - Unreal Engine 5.8, Win64, Editor-only.

@@ -11,7 +11,7 @@ This page lists what eXe can read and change in version 1.0.0. What works in a g
 - Levels and actors
 - Output log, compile and build results
 
-## Change (after approval)
+## Change (directly for small requests, otherwise after you approve the plan)
 
 | Area | Examples |
 |---|---|
@@ -27,9 +27,9 @@ This page lists what eXe can read and change in version 1.0.0. What works in a g
 | World | Landscape, landscape materials, foliage, PCG |
 | Testing | Play in Editor runs with input, log and state checks and a screenshot after game steps; multiplayer runs with several clients |
 
-## Built-in skills
+## Built-in workflow guides
 
-eXe ships with skill guides for common Unreal tasks, for example Blueprints, materials, UMG, Niagara, State Trees, landscapes and PIE testing. The AI loads the matching guide when it needs it, which improves results with fewer tokens.
+eXe gives the AI five short workflow guides: plan, execute, verify, inspect and debug. The AI loads the matching guide only when it needs it, which keeps requests small.
 
 ## Without an AI provider
 

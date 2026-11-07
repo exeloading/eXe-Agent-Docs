@@ -38,7 +38,11 @@ The AI talked about a plan but did not submit it. Ask it to submit its plan, or 
 
 1. In **Settings → AI clients**, click **Connect / repair**, then **Check status**.
 2. Close command windows that were already open and restart Claude Desktop.
-3. Start Claude Code or Codex with the copied line (**Copy Claude Code command** or **Copy Codex command**) in a new Command Prompt (cmd). Install and sign in to the client yourself.
+3. Start Claude Code or Codex with the copied line (**Copy Claude Code command** or **Copy Codex command**) in a new terminal (PowerShell or Command Prompt). Install and sign in to the client yourself.
+
+## Claude Code lost eXe after a full build
+
+The editor was closed for the build, so Claude Code lost its connection. Open the project again, then type `/mcp` in Claude Code, choose **exe-loading** and click **Reconnect**. The job continues.
 
 ## The editor did not reopen after a build
 

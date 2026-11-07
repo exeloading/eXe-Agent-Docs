@@ -12,7 +12,6 @@ All eXe network endpoints listen on `127.0.0.1` only (by default ports 8798 to 8
 |---|---|---|
 | **Tools** view | Nothing | Nobody |
 | Chat with a cloud provider | Your messages, attached images, and the project information the AI requests (file contents, asset data, logs) | The provider you chose (OpenAI, Anthropic, Google Gemini, DeepSeek or an endpoint you enter), under their terms |
-| Voice input | The recording (up to 60 seconds), once, to be turned into text; eXe does not keep it | OpenAI or Google Gemini with your key |
 | Chat with a local model | Nothing, if your model runs on your PC | Your local model |
 | Claude Code, Codex, Claude Desktop | What that client sends to its provider | Anthropic or OpenAI under your account |
 | ChatGPT remote access | Requests and answers through your tunnel | Your tunnel provider, your sign-in service and OpenAI |

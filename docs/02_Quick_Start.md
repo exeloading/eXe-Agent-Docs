@@ -1,6 +1,6 @@
 # Quick Start
 
-In about ten minutes you get a first answer about your project and make a first small, approved change.
+In about ten minutes you get a first answer about your project and make a first small change.
 
 ## Before you start
 
@@ -16,14 +16,12 @@ In about ten minutes you get a first answer about your project and make a first 
 
 Expected result: eXe answers with an overview based on your actual project. Nothing in the project changes.
 
-## Part 2: Make an approved change
+## Part 2: Make a first change
 
 1. Pick a Blueprint you can safely change, for example a test actor with a numeric variable.
 2. In the chat, type: `In BP_TestActor, change the default value of Health to 150.` Use your own Blueprint and variable name.
-3. eXe reads the project and writes a plan. Below the reply you see **The plan above is ready for your approval**.
-4. Read the plan: target asset, expected change, what must not change.
-5. Click **Approve plan**. To review the full plan with all details first, click **Details in Jobs**.
-6. eXe applies the change, saves the asset and reads the value back. The chat shows the progress.
+3. This is a small, clear change, so with the default setting (**Plan before changes: Automatic**) eXe usually runs it directly: it changes the value, saves the asset and reads the value back. The chat shows the progress.
+4. If you see **The plan above is ready for your approval** instead, read the plan (target asset, expected change, what must not change) and click **Approve plan**. **Details in Jobs** shows the full plan. Larger tasks always show a plan like this first.
 
 Expected result: the job ends with **Goal verified**. Open the Blueprint: the default value is 150. Above the chat input, the changes list shows the changed asset with **Keep** and **Revert**.
 

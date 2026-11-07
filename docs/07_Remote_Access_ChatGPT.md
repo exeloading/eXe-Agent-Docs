@@ -29,6 +29,7 @@ In your sign-in service:
 1. Create an API whose identifier is exactly your tunnel address, for example `https://<name>.trycloudflare.com/mcp`.
 2. Add the permission `exe.mcp` to that API.
 3. Create an application for ChatGPT and allow it to use the API with `exe.mcp`. Its client ID and secret go into ChatGPT, not into eXe.
+4. Allow only your own account to sign in to that application (for example with a user assignment or a sign-in rule). Anyone who can sign in can use eXe on your PC.
 
 In eXe, under **Settings → ChatGPT and remote access → ChatGPT / tunnel access with sign-in (OAuth)**:
 
@@ -63,7 +64,7 @@ Expected result: ChatGPT reports a healthy connection to your project.
 ## Security
 
 - Without sign-in, anyone who knows the tunnel address gets the level you chose. Use it only for short tests and set it back to **Off**.
-- Changes still need an approved plan, unless you chose **Approve + execute**.
+- At **Read + plan**, nothing in your project changes, not even a small change requested in the chat. Only **Approve + execute** lets the tunnel run changes.
 - Stop the tunnel when you do not need it.
 
 ## Common problems

@@ -1,6 +1,6 @@
 # eXe Agent
 
-eXe Agent is an AI development assistant inside the Unreal Editor. It reads your project, proposes a plan, works only inside the plan you approve and checks the result in the editor before it reports success. You bring your own AI provider or local model. There is no eXe account, no eXe cloud and no subscription.
+eXe Agent is an AI development assistant inside the Unreal Editor. It reads your project, makes small changes you ask for directly or proposes a plan for larger work, stays inside what you approved and checks the result in the editor before it reports success. You bring your own AI provider or local model. There is no eXe account, no eXe cloud and no subscription.
 
 ```text
 Version: 1.0.0
@@ -13,8 +13,8 @@ Publisher: eXe.Loading
 ## What you can do with it
 
 - **Ask about your project.** eXe reads Blueprints, C++, assets, levels and settings of the open project and answers in the chat.
-- **Plan before anything changes.** A change starts as a plan with exact targets. Nothing is written until you approve that plan.
-- **Let it do the work.** After approval, eXe edits Blueprints, assets, levels and (with Power Write) C++ source, saves, compiles and repairs failed steps inside the approved scope.
+- **You stay in control.** Small, clear changes you ask for run directly and are checked. Larger work starts as a plan with exact targets and runs only after you approve it. **Plan before changes** in the settings can require a plan for every change.
+- **Let it do the work.** Within what you approved, eXe edits Blueprints, assets, levels and (with Power Write) C++ source, saves, compiles and repairs failed steps inside the approved scope.
 - **See what was proven.** Every job ends with a result level, for example **Goal verified** when eXe read the changed values back from the editor.
 - **Review and undo changes.** Finished jobs list the files and assets they changed, with diff, keep and revert.
 - **Use the AI you already have.** Chat inside Unreal with your own OpenAI, Anthropic, Gemini or DeepSeek key or a local model, or connect Claude Code, Codex, Claude Desktop or ChatGPT.

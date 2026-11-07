@@ -16,7 +16,7 @@ This page explains how to install, enable, check, update and remove eXe Agent.
 | `ToolsetRegistry` | Unreal's toolsets (experimental) |
 | `EditorScriptingUtilities`, `EnhancedInput`, `Niagara`, `MeshModelingToolset`, `ModelViewViewModel`, `StateTree`, `MetaSound`, `GameplayTagsEditor` | Used by eXe's Unreal tools |
 
-- Optional Engine plugins: `LiveCodingToolset`, `AllToolsets`, `Fab`, `EOSShared`. eXe works without them; some tools are only available when they are enabled.
+- Optional Engine plugins: `LiveCodingToolset`, `AllToolsets`. eXe works without them; some tools are only available when they are enabled.
 
 eXe Agent does not copy, replace or redistribute any Engine files.
 
@@ -48,7 +48,7 @@ Open the **eXe Agent** window in one of three ways:
 - **Window → eXe Agent**
 - **Ctrl+Shift+Space** (you can change it under **Editor Preferences → Keyboard Shortcuts**)
 
-The header of the window shows your project name and the connection state. Expected: **Connected**.
+The header of the window shows your project name and the state of eXe. Expected: **eXe running**.
 
 For details, open **Settings → Connection**. Expected:
 
@@ -62,6 +62,8 @@ If a line looks different, hover over the **Unreal MCP** line for the next steps
 ## Where eXe stores data
 
 - Jobs, plans, results, settings and backups of a project: `<YourProject>/Saved/eXe.Loading`
+- Settings for all your projects (Power Write, YOLO, Plan before changes, AI client access): `%LOCALAPPDATA%\eXe.Loading`
+- After **Connect / repair** for AI clients: the Windows user environment variables `EXE_LOADING_LOCAL_TOKEN` and `EXE_LOADING_LOCAL_AUTH_HEADER`. **Revoke token** removes them.
 - Chats of a project are kept with that project.
 - API keys: saved for your Windows user in Windows Credential Manager, never in the project folder.
 - Project rules (optional): `<YourProject>/ProjectDocs/eXe/Rules`
@@ -76,7 +78,7 @@ Fab updates arrive through the Epic Games Launcher. Close the editor before upda
 
 1. Optional, before disabling: remove saved API keys. In **Chat**, open the AI controller and click **Remove saved key**.
 2. Disable **eXe Agent** in **Edit → Plugins** and restart the editor.
-3. Optional: delete `<YourProject>/Saved/eXe.Loading` to remove all eXe jobs, chats and settings of that project.
+3. Optional: delete `<YourProject>/Saved/eXe.Loading` to remove all eXe jobs, chats and settings of that project, and `%LOCALAPPDATA%\eXe.Loading` to remove the settings for all your projects.
 4. Optional: if you connected Claude Code, Codex or Claude Desktop, click **Revoke token** under **Settings → AI clients** before you disable the plugin, or remove the `exe-loading` entry from the client's MCP configuration yourself.
 
 ## Do not
