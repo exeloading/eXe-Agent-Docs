@@ -15,7 +15,7 @@ No known issues are recorded for version 1.0.0. Current reports are collected in
 - **Reverting has limits.** eXe can revert files and assets it changed where it kept a saved copy. It keeps no copy of World Partition actor files (One File Per Actor) or of files over 64 MB. Unsaved editor changes and files changed by someone else afterwards are not reverted. Use version control.
 - **Reopen after builds.** eXe never restarts the editor. After every full build, successful or not, you open the project again.
 - **Optional clients.** Claude Code, Codex and Claude Desktop are installed, signed in and started by you. eXe copies the start command but never runs it.
-- **ChatGPT access** needs a ChatGPT plan with connector support and a tunnel that you run yourself.
+- **ChatGPT access** needs a ChatGPT plan with connector support, a tunnel that you run yourself and sign-in (OAuth). Access without sign-in is not supported in 1.0.
 - **Changes outside eXe.** Changes made by an AI client with its own tools, or through a direct connection to Unreal's MCP server, are not checked, approved or revertible by eXe.
 - **Not every Unreal task is covered.** When eXe has no capability for a task, it says so.
 

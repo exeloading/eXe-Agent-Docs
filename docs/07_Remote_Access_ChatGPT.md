@@ -41,7 +41,7 @@ eXe stores no client secrets or tokens. **Status** shows the saved setting. **Re
 
 If **Check** reports that dynamic client registration is on, ChatGPT creates a new third-party app on every connection, and each one must be allowed to use the API separately. Recommended: turn it off in the sign-in service and enter your own client in ChatGPT.
 
-## Step 2b: Without sign-in (short tests only)
+## Step 2b: Without sign-in (not supported in 1.0, short tests only)
 
 Under **ChatGPT / tunnel access without sign-in**, choose a level. It applies immediately and stays after restarts.
 
@@ -63,7 +63,7 @@ Expected result: ChatGPT reports a healthy connection to your project.
 
 ## Security
 
-- Without sign-in, anyone who knows the tunnel address gets the level you chose. Use it only for short tests and set it back to **Off**.
+- Access without sign-in is not supported in version 1.0. Without sign-in, anyone who knows the tunnel address gets the level you chose. If you try it anyway, use it only for short tests and set it back to **Off**.
 - At **Read + plan**, nothing in your project changes, not even a small change requested in the chat. Only **Approve + execute** lets the tunnel run changes.
 - Stop the tunnel when you do not need it.
 
