@@ -15,7 +15,7 @@ First public release for Unreal Engine 5.8. eXe Agent lets you plan, approve, ex
 - Play in Editor tests with screenshots after game steps, including multiplayer runs.
 - **Tools** view without an AI provider: asset checks, level check, Blueprint explanation, dependencies, clean-up report and project build.
 - Connection for Claude Code, Codex and Claude Desktop (eXe copies the start command, you run it) and MCP access for local clients.
-- Optional remote access from ChatGPT through your own tunnel, with optional sign-in.
+- Optional remote access from ChatGPT through your own tunnel with sign-in (OAuth). Access without sign-in is not supported in 1.0.
 - Optional asset generation with your own key (Meshy, Tripo, OpenAI, Stability AI, ElevenLabs) or your own local server.
 - Power Write and YOLO switches, project rules.
 - Interface in English, German, Japanese, Simplified Chinese, Korean, Spanish and French; separate reply language.
