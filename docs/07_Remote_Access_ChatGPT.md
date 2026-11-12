@@ -1,6 +1,8 @@
 # Remote Access with ChatGPT
 
-You can use eXe from ChatGPT on the web or on your phone. ChatGPT then talks to the eXe instance on your PC through a tunnel that you run yourself. eXe does not provide or start a tunnel, a sign-in service or any cloud service. Remote access is off after installation.
+> **Advanced.** This page needs a tunnel and your own sign-in service. If you are new to eXe, start with the eXe chat or Claude Code and Codex ([Connect AI Providers](04_Connect_AI_Providers.md)).
+
+You can use eXe from ChatGPT on the web or on your phone. ChatGPT then talks to the eXe instance on your PC through a tunnel that you run yourself. eXe does not provide or start a tunnel, a sign-in service or any cloud service. Remote access is off after installation. Its settings apply to the current project only.
 
 Claude Code, Codex and Claude Desktop on the same PC do not need a tunnel ([Connect AI Providers](04_Connect_AI_Providers.md)).
 
@@ -9,6 +11,10 @@ Claude Code, Codex and Claude Desktop on the same PC do not need a tunnel ([Conn
 - A ChatGPT plan that supports custom MCP connectors. Check OpenAI's current plan details.
 - A tunnel program, for example Cloudflare Tunnel (`cloudflared`).
 - Recommended: your own sign-in service (OAuth), for example Auth0, Microsoft Entra or Keycloak, so only you can use the connection.
+
+## How it fits together
+
+ChatGPT (on the web or your phone) → your tunnel address on the internet → the tunnel program on your PC → eXe in your open Unreal Editor (`127.0.0.1:8798`). Your sign-in service checks that only you can use this way in. When the editor or the tunnel is closed, ChatGPT cannot reach eXe.
 
 ## Step 1: Start a tunnel
 
@@ -43,13 +49,13 @@ If **Check** reports that dynamic client registration is on, ChatGPT creates a n
 
 ## Step 2b: Without sign-in (not supported in 1.0, short tests only)
 
-Under **ChatGPT / tunnel access without sign-in**, choose a level. It applies immediately and stays after restarts.
+Under **ChatGPT / tunnel access without sign-in**, choose a level. It applies immediately to this project and stays after restarts.
 
 | Level | What anyone with the tunnel address can do |
 |---|---|
 | **Off** | Nothing (default) |
 | **Read + plan** | Read the project and prepare plans. Approval stays with you in Unreal. |
-| **Approve + execute** | Also approve plans and run changes. eXe shows a warning and you must confirm it before this level applies. |
+| **Approve + execute** | Also approve plans and run changes. eXe shows a warning and you must confirm it before this level applies. The header then shows **Remote can approve**. |
 
 When sign-in is active, this switch does not apply. YOLO never covers access without sign-in.
 
@@ -76,4 +82,4 @@ Expected result: ChatGPT reports a healthy connection to your project.
 | Setting saved, but no effect | Editor not restarted after saving sign-in | Close the editor and open the project again |
 | eXe says environment variables override the setting | Old `EXE_LOADING_*` variables in Windows | Remove them and restart the editor |
 
-Previous: [Permissions and Safety](06_Permissions_And_Safety.md) · [Documentation Index](INDEX.md) · Next: [Troubleshooting and FAQ](08_Troubleshooting_And_FAQ.md)
+Previous: [Permissions and Safety](06_Permissions_And_Safety.md) · [Documentation Index](INDEX.md) · Next: [Troubleshooting](08_Troubleshooting_And_FAQ.md)

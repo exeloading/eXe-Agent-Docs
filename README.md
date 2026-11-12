@@ -29,11 +29,11 @@ Publisher: eXe.Loading
 ## Quick start
 
 1. Install eXe Agent from the Fab Library to Unreal Engine 5.8, enable it in **Edit → Plugins** and restart the editor.
-2. Make sure Unreal's MCP server runs: **Editor Preferences → Model Context Protocol → Auto Start Server**.
+2. Make sure Unreal's MCP server runs: **Edit → Editor Preferences → Model Context Protocol → Auto Start Server**.
 3. Open eXe Agent with the **eXe Agent** toolbar button, **Window → eXe Agent** or **Ctrl+Shift+Space**.
 4. In **Chat**, click **Connect an AI controller**, choose a provider, enter a model ID and your key, click **Save** and ask: `Give me a short overview of this project.`
 
-Full walkthrough: [Quick Start](docs/02_Quick_Start.md)
+Full walkthrough: [Quick Start](docs/02_Quick_Start.md). No API key yet? See [Get an API key](docs/02_Quick_Start.md#get-an-api-key), or use Claude Code, Codex or a local model ([Connect AI Providers](docs/04_Connect_AI_Providers.md)). Questions: [FAQ](docs/12_FAQ.md).
 
 ## Documentation
 
@@ -45,14 +45,17 @@ Full walkthrough: [Quick Start](docs/02_Quick_Start.md)
 - [Capabilities](docs/05_Capabilities.md)
 - [Permissions and Safety](docs/06_Permissions_And_Safety.md)
 - [Remote Access with ChatGPT](docs/07_Remote_Access_ChatGPT.md)
-- [Troubleshooting and FAQ](docs/08_Troubleshooting_And_FAQ.md)
+- [Troubleshooting](docs/08_Troubleshooting_And_FAQ.md)
 - [Known Issues and Limitations](docs/09_Known_Issues_And_Limitations.md)
 - [Changelog](docs/10_Changelog.md)
 - [Privacy, Costs and Third-Party Software](docs/11_Privacy_Costs_And_Third_Party.md)
+- [FAQ](docs/12_FAQ.md)
+- [Glossary](docs/13_Glossary.md)
 
 ## Good to know
 
 - eXe Agent depends on experimental Unreal Engine 5.8 features (Model Context Protocol, Toolset Registry). A future engine version may require a plugin update.
+- Support for Unreal Engine 5.9 is planned as a free update after Epic releases 5.9 and Fab accepts it.
 - eXe runs inside the Unreal Editor. When the editor is closed, eXe is not running.
 - eXe never restarts the editor and never starts AI clients or other programs for you. The only program it can start is Unreal Build Tool from your own Engine, for a build you allowed.
 - AI results depend on the provider and model you choose. eXe reports what it could verify and does not claim success it could not check.

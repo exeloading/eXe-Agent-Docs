@@ -11,6 +11,7 @@ All eXe network endpoints listen on `127.0.0.1` only (by default ports 8798 to 8
 | You use... | Data that leaves your PC | Goes to |
 |---|---|---|
 | **Tools** view | Nothing | Nobody |
+| Blender | Nothing. eXe talks only to the Blender add-on on your PC (`127.0.0.1`, port 9876) | Nobody |
 | Chat with a cloud provider | Your messages, attached images, and the project information the AI requests (file contents, asset data, logs) | The provider you chose (OpenAI, Anthropic, Google Gemini or DeepSeek), under their terms |
 | Chat with a local model | Nothing, if your model runs on your PC | Your local model |
 | Claude Code, Codex, Claude Desktop | What that client sends to its provider. Claude Desktop also downloads the npm package `mcp-remote` to reach eXe | Anthropic or OpenAI under your account; the npm registry (registry.npmjs.org) |
@@ -29,8 +30,11 @@ Check your provider's data policy before you send confidential project content.
 ## Local storage
 
 - Project data (jobs, chats, settings, backups): `<YourProject>/Saved/eXe.Loading`
-- API keys: Windows Credential Manager, for your Windows user
-- Power Write and YOLO: a settings file of your Windows user
+- eXe documents (plan copies, notes, decisions, project rules): `<YourProject>/ProjectDocs/eXe`, only when eXe saves something there. eXe refuses to save keys in this folder.
+- API keys: Windows Credential Manager, for your Windows user. The entries are named `eXe.Loading/NativeChat/...` (chat) and `eXe.Loading/AssetGeneration/...` (asset generation).
+- Power Write, YOLO, **Plan before changes** and your own MCP servers: settings files of your Windows user under `%LOCALAPPDATA%\eXe.Loading`
+
+Full list and how to remove everything: [Installation](01_Installation.md#where-exe-stores-data).
 
 ## Third-party software
 
@@ -42,4 +46,4 @@ eXe Agent includes third-party components, among them VibeUE (MIT license) and P
 
 Unreal Engine plugins that eXe uses are part of your Engine installation and are not redistributed.
 
-Previous: [Changelog](10_Changelog.md) · [Documentation Index](INDEX.md)
+Previous: [Changelog](10_Changelog.md) · [Documentation Index](INDEX.md) · Next: [FAQ](12_FAQ.md)
