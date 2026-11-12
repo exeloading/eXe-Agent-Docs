@@ -55,7 +55,7 @@ For details, open **Settings → Connection**. Expected:
 - **eXe Core: running**
 - **Project link: active**
 - **Editor: connected**
-- **Unreal MCP:** server running
+- **Unreal MCP: running at** followed by the address
 
 If a line looks different, hover over the **Unreal MCP** line for the next steps or see [Troubleshooting](08_Troubleshooting_And_FAQ.md).
 
@@ -63,7 +63,7 @@ If a line looks different, hover over the **Unreal MCP** line for the next steps
 
 - Jobs, plans, results, settings and backups of a project: `<YourProject>/Saved/eXe.Loading`
 - Settings for all your projects (Power Write, YOLO, Plan before changes, AI client access): `%LOCALAPPDATA%\eXe.Loading`
-- After **Connect / repair** for AI clients: the Windows user environment variables `EXE_LOADING_LOCAL_TOKEN` and `EXE_LOADING_LOCAL_AUTH_HEADER`. **Revoke token** removes them.
+- After **Connect / repair** for AI clients: the Windows user environment variables `EXE_LOADING_LOCAL_TOKEN` and `EXE_LOADING_LOCAL_AUTH_HEADER`, and for Claude Desktop the access key inside the `exe-loading` entry of its own configuration file. **Revoke token** removes the variables and makes the key invalid; the entry itself stays until you remove it.
 - Chats of a project are kept with that project.
 - API keys: saved for your Windows user in Windows Credential Manager, never in the project folder.
 - Project rules (optional): `<YourProject>/ProjectDocs/eXe/Rules`
@@ -76,7 +76,7 @@ Fab updates arrive through the Epic Games Launcher. Close the editor before upda
 
 ## Remove
 
-1. Optional, before disabling: remove saved API keys. In **Chat**, open the AI controller and click **Remove saved key**.
+1. Optional, before disabling: remove saved API keys. In **Chat**, open the AI controller and click **Remove saved key**. To remove a key for asset generation, open **Settings → Asset generation**, choose the provider, leave the key field empty and click **Save key**.
 2. Disable **eXe Agent** in **Edit → Plugins** and restart the editor.
 3. Optional: delete `<YourProject>/Saved/eXe.Loading` to remove all eXe jobs, chats and settings of that project, and `%LOCALAPPDATA%\eXe.Loading` to remove the settings for all your projects.
 4. Optional: if you connected Claude Code, Codex or Claude Desktop, click **Revoke token** under **Settings → AI clients** before you disable the plugin, or remove the `exe-loading` entry from the client's MCP configuration yourself.

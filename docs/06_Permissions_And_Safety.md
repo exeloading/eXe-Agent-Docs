@@ -31,7 +31,7 @@ Small means at most 5 steps and 5 changed assets or files, with nothing deleted 
 
 ## Permissions
 
-**Settings → Permissions → Write modes (all projects of this Windows user)**
+**Settings → Permissions → Write modes (all your projects)**
 
 ### Power Write
 
@@ -55,7 +55,7 @@ Both switches are stored in a file of your Windows user. A program or AI client 
 - eXe never restarts the editor. After the build, open the project again yourself; eXe then continues the job. If the build failed, eXe shows the compiler errors.
 - Claude Code: after you open the project again, type `/mcp`, choose **exe-loading** and click **Reconnect**.
 
-Like Power Write and YOLO, the build setting is stored for your Windows user. A program or AI client that runs its own commands on your computer could change it, so only give such tools access you trust.
+The build setting is stored with the project, in `<YourProject>/Saved/eXe.Loading`; Power Write and YOLO are stored for your Windows user. A program or AI client that runs its own commands on your computer could change these files, so only give such tools access you trust.
 
 eXe only starts Unreal Build Tool from your own Engine installation. It never starts other programs.
 
@@ -68,6 +68,7 @@ eXe saves exactly the assets an approved step changed and nothing else. Your oth
 - **Changes list** above the chat input: select files or assets and click **Revert** to put them back to the state before the job. The current version is kept as a backup.
 - **Jobs:** for a finished job, **Undo this job's changes** puts every file the job changed back to the copy saved when the job started.
 - Files someone changed after the job and unsaved editor changes are left alone and listed. C++ changes need a new build afterwards.
+- eXe keeps the saved copies for 14 days. After that a change stays listed but can no longer be put back.
 - Not covered: World Partition actor files (One File Per Actor) and files over 64 MB. eXe keeps no copy of them, so it cannot put them back. Changes an AI client made with its own tools are not covered either.
 - **Edit → Undo** in the editor still works for many editor changes in the current session.
 
