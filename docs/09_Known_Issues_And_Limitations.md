@@ -21,6 +21,7 @@ Current reports are collected in the `#known-issues` channel on [Discord](https:
 - **Reopen after builds.** eXe never restarts the editor. After every full build, successful or not, you open the project again.
 - **Optional clients.** Claude Code, Codex and Claude Desktop are installed, signed in and started by you. eXe copies the start command but never runs it.
 - **ChatGPT access** needs a ChatGPT plan with connector support, a tunnel that you run yourself and sign-in (OAuth). Access without sign-in is not supported in 1.0.
+- **No proxy for the built-in chat.** The eXe chat and asset generation connect to the provider directly and do not use a system proxy. In a network that reaches the internet only through a proxy, use Claude Code or Codex instead.
 - **Changes outside eXe.** Changes made by an AI client with its own tools, or through a direct connection to Unreal's MCP server, are not checked, approved or revertible by eXe.
 - **Not every Unreal task is covered.** When eXe has no capability for a task, it says so.
 
