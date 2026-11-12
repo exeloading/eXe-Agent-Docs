@@ -55,6 +55,8 @@ Both switches are stored in a file of your Windows user. A program or AI client 
 - eXe never restarts the editor. After the build, open the project again yourself; eXe then continues the job. If the build failed, eXe shows the compiler errors.
 - Claude Code: after you open the project again, type `/mcp`, choose **exe-loading** and click **Reconnect**.
 
+Like Power Write and YOLO, the build setting is stored for your Windows user. A program or AI client that runs its own commands on your computer could change it, so only give such tools access you trust.
+
 eXe only starts Unreal Build Tool from your own Engine installation. It never starts other programs.
 
 ## Saving
