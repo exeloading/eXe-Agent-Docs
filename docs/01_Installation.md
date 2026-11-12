@@ -77,7 +77,7 @@ The header of the window shows your project name, a colored dot and the state of
 | Accent color (blue by default) | **eXe running · n job(s) running** | eXe is working on a job |
 | Yellow | **eXe running · Unreal MCP is off, see Settings** or **eXe running · check Unreal MCP in Settings** | Unreal's MCP server is not usable yet. See Step 2 or [Troubleshooting](08_Troubleshooting_And_FAQ.md) |
 | Yellow | **eXe running, no project** | eXe is not connected to the open project yet. Wait a moment; if it stays, restart the editor |
-| White | **Starting...** or **Reconnecting...** | eXe is starting or briefly not answering. Wait a few seconds |
+| Text color (white in the dark theme) | **Starting...** or **Reconnecting...** | eXe is starting or briefly not answering. Wait a few seconds |
 | Red | **eXe could not start · see Settings** | Open **Settings → Connection**, read the reason and see [Troubleshooting](08_Troubleshooting_And_FAQ.md) |
 
 For more detail, open **Settings → Connection**. When everything works, it shows:
@@ -101,7 +101,7 @@ eXe starts with the editor and stops when the editor closes. Nothing keeps runni
 | Power Write, YOLO, **Plan before changes**, your own MCP servers | `%LOCALAPPDATA%\eXe.Loading` | All your projects (your Windows user) |
 | API keys | Windows Credential Manager, entries that start with `eXe.Loading/` | Your Windows user, never the project folder |
 | eXe workspace for Claude Code and Codex (start file and workflow guides) | `%LOCALAPPDATA%\eXe.Loading\CLI\workspaces` | One folder per project |
-| eXe documents: plan copies, notes, decisions and project rules | `<YourProject>/ProjectDocs/eXe` (only created when eXe saves something there) | This project |
+| eXe documents: plan copies, notes, decisions and project rules | `<YourProject>/ProjectDocs/eXe` (created when eXe saves something there or you click **Copy rules folder path**) | This project |
 
 After **Connect / repair** for AI clients, eXe also sets two Windows user environment variables, `EXE_LOADING_LOCAL_TOKEN` and `EXE_LOADING_LOCAL_AUTH_HEADER`, and writes an `exe-loading` entry into the configuration of Claude Code, Codex and Claude Desktop. **Revoke token** removes the variables and makes the key invalid; the entry itself stays until you remove it.
 
@@ -116,7 +116,7 @@ Fab updates arrive through the Epic Games Launcher. Close the editor before you 
 
 ## Remove
 
-1. Optional, before you disable the plugin: remove saved API keys. In **Chat**, open the AI controller and click **Remove saved key**. To remove a key for asset generation, open **Settings → Asset generation**, choose the provider, leave the key field empty and click **Save key**.
+1. Optional, before you disable the plugin: remove saved API keys. In **Chat**, open the AI controller and click **Remove saved key**; it removes the key of the provider saved for this project. For another provider, choose it, leave the key field blank, click **Save** and then **Remove saved key**. To remove a key for asset generation, open **Settings → Asset generation**, choose the provider, leave the key field empty and click **Save key**.
 2. Optional: if you connected Claude Code, Codex or Claude Desktop, click **Revoke token** under **Settings → AI clients**, or remove the `exe-loading` entry from the client's MCP configuration yourself.
 3. Disable **eXe Agent** in **Edit → Plugins** and restart the editor.
 4. Optional: delete `<YourProject>/Saved/eXe.Loading` to remove all eXe jobs, chats and settings of that project, `<YourProject>/ProjectDocs/eXe` to remove eXe's documents, and `%LOCALAPPDATA%\eXe.Loading` to remove the settings for all your projects. Keys left in Windows Credential Manager can be removed there; their names start with `eXe.Loading/`.

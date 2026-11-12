@@ -140,7 +140,7 @@ Click **Approve plan** on the card below the reply, or type a short answer such 
 Yes. Set **Settings → Permissions → Plan before changes** to **Always**. Then every change shows its plan first, also while YOLO is on.
 
 ### How do I stop a running task?
-In the chat, click **Stop** to stop the current reply. In **Jobs**, select the job and click **Stop work** or **Cancel work**; both end the job the same way and only record a different word (**Stopped** or **Cancelled**). Changes from finished steps stay listed under **Changes**, and you can revert them where eXe kept a copy.
+In the chat, click **Stop** to stop the current reply. In **Jobs**, select the job and click **Stop work** or **Cancel work**; both end the job the same way. While the job runs, they only record a different word (**Stopped** or **Cancelled**); a plan that has not started is recorded as **Cancelled**. Changes from finished steps stay listed under **Changes**, and you can revert them where eXe kept a copy.
 
 ### How do I undo a change?
 Above the chat input, **Changes** lists what finished jobs changed. Select a row and click **Revert** to put it back to the state before the job; the current version is kept as a backup. In **Jobs**, **Undo this job's changes** reverts a whole job. eXe keeps its copies for 14 days and keeps none for World Partition actor files or files over 64 MB, so also use version control.
@@ -154,7 +154,7 @@ No. eXe does not commit, push or merge. Use your version control as usual, and c
 ## Builds and C++
 
 ### Can eXe change C++ code?
-Yes, after you turn on **Power Write**. For a change to existing C++ code, eXe can use Live Coding when the optional `LiveCodingToolset` Engine plugin is enabled; other changes need a full build. After a Live Coding change, build the project in your IDE before you restart Unreal, or the change is lost.
+Yes, after you turn on **Power Write**. For a change inside existing `.cpp` files, eXe can use Live Coding when the optional `LiveCodingToolset` Engine plugin is enabled. New classes and changes to headers, `Build.cs` files or constructors need a full build. After a Live Coding change, build the project in your IDE before you restart Unreal, or the change is lost.
 
 ### Why did the editor close, why does it not open again, and what if the build failed?
 A full build needs the editor to be closed, so eXe closes it and Unreal Build Tool runs in a console window. eXe never restarts the editor. When the console window has closed, open your project again and eXe continues the job. If the build failed, open `Saved/eXe.Loading/LAST_FULL_BUILD.md` in your project: it names the build log and the next steps.

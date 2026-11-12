@@ -30,7 +30,7 @@ What is saved where:
 - The **key** is saved for your Windows user in Windows Credential Manager, one per provider. In another project you do not need to enter it again.
 - The **AI controller** (provider and model) is saved per project. In a new project, choose provider and model once and leave the key field blank to use the saved key.
 - A new controller applies to new chats. An existing chat keeps the controller it started with; the chat then says which controller it uses.
-- **Remove saved key** deletes the key of the selected provider.
+- **Remove saved key** deletes the key of the provider saved for this project. To delete the key of another provider, choose it, leave the key field blank, click **Save** and then **Remove saved key**.
 
 The cloud providers always use their official address. Other cloud services, for example another OpenAI-compatible service, cannot be entered in version 1.0.
 
@@ -41,7 +41,7 @@ Images: OpenAI, Anthropic and Gemini models that read images accept attached ima
 Model usage is billed by your provider under your own account. eXe has no costs of its own.
 
 - The line at the top of a chat shows the tokens your provider reported, for example `tokens in 120,000, out 3,400`, and how long the chat is: `chat length about 45k of 200k tokens`.
-- Optional: enter your provider's prices per 1M tokens in the AI controller, in the order input; output; cached input; currency, for example `3; 15; 0.3; USD`. The line then also shows an estimate such as `about 0.42 USD with your prices`. Your provider's bill is what counts.
+- Optional: enter your provider's prices per 1M tokens in the AI controller, in the order input; output; cached input; currency, for example `3; 15; 0.3; USD`. The line then also shows an estimate such as `about 0.4200 USD with your prices`. Your provider's bill is what counts.
 - A longer chat costs more per reply, because the model reads the whole chat again each time. **Chat length** (100k to 900k tokens, recommended 200k) sets when the AI summarizes the chat. **Compact chat now** and **Continue in a new chat** in the **…** menu make the chat short again ([Long chats](03_Agent_Window.md#long-chats-and-costs)).
 - Broad requests ("analyze the whole project") read more of the project and use more tokens than narrow ones.
 
@@ -110,7 +110,7 @@ The editor closes for a full build, so clients lose their connection. After you 
 
 ## Two projects and switching projects
 
-- Each open editor runs its own eXe with its own jobs and its own address (`8798` for the first editor, the next free port for the next one). **Settings → Connection** shows the address.
+- Each open editor runs its own eXe with its own jobs and its own address (`8798` for the first editor, `8801` for the second, then `8804` and so on, up to 8 editors). **Settings → Connection** shows the address.
 - Each open project also needs its own Unreal MCP port ([Installation](01_Installation.md#step-2-start-unreals-mcp-server)).
 - Clients are bound to a project. A client that reaches the wrong editor gets the error `EXE_PROJECT_MISMATCH` and eXe does nothing.
   - Claude Desktop and clients you start yourself use the project of the last **Connect / repair**. When you switch projects, click **Connect / repair** in the project you work on and restart Claude Desktop.

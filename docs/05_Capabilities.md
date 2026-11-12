@@ -71,11 +71,11 @@ Optional, under **Settings → Asset generation**. eXe can generate assets with 
 
 How to generate an asset:
 
-1. Choose the service. For a cloud service, paste your API key and click **Save key** (saved for your Windows user). For a local server, enter its address or leave the field empty for the default (`http://127.0.0.1:7860` for images, `http://127.0.0.1:8081` for 3D).
-2. Optional: enter a model ID and click **Save settings**. Empty uses eXe's default for that service. For the local 3D server, this field is the resolution: `512` (default), `1024` or `1536`. Higher values take much longer.
+1. Choose the service. For a cloud service, paste your API key and click **Save key** (saved for your Windows user). For a local server, enter its address, or leave the field empty for the default (`http://127.0.0.1:7860` for images, `http://127.0.0.1:8081` for 3D).
+2. Optional: enter a model ID. Empty uses eXe's default for that service. For the local 3D server, this field is the resolution: `512` (default), `1024` or `1536`. Higher values take much longer. Click **Save settings**; for a local server this also saves the address. An address you have not saved is not used.
 3. Describe the asset, for example `a weathered wooden barrel with iron bands`, and optionally enter a **File name**.
 4. Click **Generate**. For a cloud service, eXe names the service and asks you to confirm, because the provider bills your account. For a local server, eXe confirms that nothing leaves your PC.
-5. eXe shows **Started · the result will be ... · click Check for progress**. Click **Check** to see the progress. A generation can take up to 15 minutes.
+5. eXe shows **Started · the result will be ... · click Check for progress**. Click **Check** to see the progress. A cloud generation can take up to 15 minutes; on the local 3D server it can take up to an hour.
 6. The file is saved in your project under `GeneratedAssets/<service>/`. **Copy folder path** copies the folder. To bring the file into `/Game`, ask eXe in the chat to import it; that runs as a normal approved plan.
 
 Good to know:

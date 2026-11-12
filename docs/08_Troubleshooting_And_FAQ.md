@@ -70,7 +70,7 @@ Each editor runs its own eXe with its own jobs and its own address; **Settings â
 
 ## Chat messages
 
-The code in brackets at the end of a message, for example `(CHAT_PROVIDER_HTTP_429)`, is for support.
+Most messages end with a code in brackets, for example `(CHAT_PROVIDER_HTTP_429)`; a few start with the code instead. The code is for support.
 
 | Message | Cause | What to do |
 |---|---|---|
@@ -165,7 +165,7 @@ If the editor closed or crashed during a step, eXe shows **Inspect interrupted s
 
 ### A change could not be reverted
 
-The row in **Changes** says why: **changed again later**, **no saved copy**, **result not recorded** or **job still running** ([Changes list](03_Agent_Window.md#changes-list)). Use version control for these cases.
+The row in **Changes** says why: **changed again later**, **no saved copy**, **BASELINE_TOO_LARGE** (file over 64 MB), **result not recorded** or **job still running** ([Changes list](03_Agent_Window.md#changes-list)). Use version control for these cases.
 
 ### The job list says "Running 0" while a job runs
 

@@ -42,7 +42,7 @@ A new chat asks **What should eXe Agent do?** and offers:
 
 ### AI controller
 
-The button at the top right shows the provider and model of the current chat, or **Connect AI** when none is set. Click it to change provider, model, key, chat length and prices for new chats. An existing chat keeps the controller it started with. The controller is saved for this project; the key is saved for your Windows user. Details: [Connect AI Providers](04_Connect_AI_Providers.md#option-1-the-exe-chat-with-your-api-key).
+The button at the top right shows the provider and model of the current chat, or **Connect AI** when none is set. Click it to change provider, model, key, chat length and prices. A new provider or model applies to new chats; an existing chat keeps the controller it started with. Chat length applies to all chats after **Save**. The controller is saved for this project; the key is saved for your Windows user. Details: [Connect AI Providers](04_Connect_AI_Providers.md#option-1-the-exe-chat-with-your-api-key).
 
 ### Message box
 
@@ -67,7 +67,7 @@ The button at the top right shows the provider and model of the current chat, or
 
 Cards below a reply:
 
-- **Plan card** (**Plan · name**): the number of steps, the assets or files the plan may change and how many steps are done, for example `4 steps · 2 assets or files · 1 of 4 done`. Each step shows its kind (**Asset**, **C++ source**, **Build** or **Editor action**) and its state; the current one says **running now**. **Full plan text** shows the complete plan.
+- **Plan card** (**Plan ·** and its state, for example **Plan · Needs your decision**, with the plan name below): the number of steps, the assets or files the plan may change and how many steps are done, for example `4 steps · 2 assets or files · 1 of 4 done`. Each step shows its kind (**Asset**, **C++ source**, **Build** or **Editor action**) and its state; the current one says **running now**. **Full plan text** shows the complete plan.
 - **Job card** (**Work in progress**): the current step after **Now:**. When the job waits for you, it says **Your decision is needed · Open in Jobs**.
 - **Decision card**: see [Decision cards](#decision-cards).
 
@@ -87,9 +87,9 @@ The AI reads the whole chat again for every reply, so a long chat costs more per
 - **Chat length** in the AI controller sets when the AI summarizes a chat: 100k, 200k (recommended), 300k, 500k, 700k or 900k tokens. Above 200k, eXe shows a cost warning. The setting applies to all chats after **Save**.
 - When a chat reaches its length, the AI writes a summary and continues from it. All messages stay visible, and the chat shows **Chat compacted. The AI continues from a summary of the messages above; they stay visible here.**
 - **Compact chat now** (… menu) does this right away.
-- **Continue in a new chat** (… menu) opens a new chat that starts from a summary of this one. The new chat shows **Continued from an earlier chat.** and **Open that chat** takes you back.
+- **Continue in a new chat** (… menu) opens a new chat that starts from a summary of this one. The new chat starts with `Continued from "<title>". The AI starts from a summary of that chat.` and **Open that chat** takes you back to the earlier one.
 
-The grey line at the top of a chat shows the provider, the model and the tokens your provider reported: `tokens in 120,000, out 3,400`, followed by `chat length about 45k of 200k tokens`. **not fully reported** means the provider did not report every round. If you enter your prices in the AI controller, the line also shows `about 0.42 USD with your prices`. This is an estimate; your provider's bill is what counts.
+The grey line at the top of a chat shows the provider, the model and the tokens your provider reported: `tokens in 120,000, out 3,400`, followed by `chat length about 45k of 200k tokens`. **not fully reported** means the provider did not report every round. If you enter your prices in the AI controller, the line also shows `about 0.4200 USD with your prices`. This is an estimate; your provider's bill is what counts.
 
 ### Decision cards
 
@@ -119,11 +119,12 @@ After **Revert**, eXe reports for example `2 reverted, 1 not reverted. Rows that
 | Reason on the row | Meaning |
 |---|---|
 | **changed again later** | Someone changed the file after the job. eXe leaves it alone |
-| **no saved copy** | eXe has no copy, for example for a World Partition actor file, a file over 64 MB or after 14 days |
+| **no saved copy** | eXe has no copy, for example for a World Partition actor file or after 14 days |
+| **BASELINE_TOO_LARGE** | The file is larger than 64 MB, so eXe kept no copy |
 | **result not recorded** | The job did not record a result for this file |
 | **job still running** | Wait until the job has finished |
 
-Changes stay recorded for 14 days and can be reverted during that time. You can hide the list under **Settings → General → Show changes above the chat input**; changes are still recorded.
+The list shows changes from the last 14 days, which can be reverted during that time. Older jobs still show their changes under **Jobs → Show changes**, but they can no longer be reverted. You can hide the list under **Settings → General → Show changes above the chat input**; changes are still recorded.
 
 ## Jobs
 
@@ -139,11 +140,11 @@ Select a job to see its details:
 - **Plan and decision:** the full plan text. A long plan is split into pages: `Plan text, characters 1–16000 of 24000.` **Read next plan page** and **Read from beginning** move through it. You approve a plan or a build in the chat where it was planned (the eXe chat or your AI client), not here. Buttons, depending on the state:
   - **Request revision**: describe what should change in the text box (at least 20 characters). The AI then prepares a new plan.
   - **Later**: postpone a build.
-  - **Stop work** and **Cancel work**: both end the job for good. Nothing more runs, and changes from steps that already finished stay listed under **Changes**, where you can revert them. The only difference is the word in the job's history: **Stopped** or **Cancelled**. If you typed something in the text box, it is used as the reason and needs at least 20 characters; otherwise leave the box empty.
+  - **Stop work** and **Cancel work**: both end the job for good. Nothing more runs, and changes from steps that already finished stay listed under **Changes**, where you can revert them. The only difference is the word in the job's history while the job runs: **Stopped** or **Cancelled**. A plan that has not started yet is recorded as **Cancelled** either way. If you typed something in the text box, it is used as the reason and needs at least 20 characters; otherwise leave the box empty.
 - **Progress:** the current step (**Now**) and the next one (**Next**). **Blocked:** names what stops the job.
 - **Required results:** the overall results the plan must reach, each with its state. **No separate overall result checks; every step is still checked on its own.** means the plan has none.
-- **Result and checks:** **How far the result is proven** (the [result level](#result-levels)), **Checks overall**, every single check, and the changed files and editor actions.
-- **Steps:** what each step did. For game tests, **Show PIE screenshot** shows the **Picture after game step n**. **Image is usable** means the picture shows something; **The image may be empty or black and does not prove the result** means you should check the game yourself.
+- **Result and checks:** **How far the result is proven** (the [result level](#result-levels)), **Checks overall**, every single check, and the changed files and editor actions. For game tests, **Show PIE screenshot** or **Picture after game step n** opens the screenshot. **Image is usable** means the picture shows something; **The image may be empty or black and does not prove the result** means you should check the game yourself.
+- **Steps:** what each step did.
 - For finished jobs: **Show changes** lists every target as **unchanged**, **changed · can be undone** or **changed**. **Undo this job's changes** puts every file the job changed back to the copy saved when the job started.
 - **Copy summary** copies a short report. **Copy for support** copies the technical details of the job for a bug report. API keys are not included.
 - **Evidence**, **Diagnostics**, **Execution Context** and **Technical details (for support)** are for support. You do not need them for normal work.
@@ -219,7 +220,7 @@ Settings are grouped. Use **Search settings** to find an option.
 
 Project rules are short instructions the AI gets for every new plan in this project, for example "Put new assets under /Game/MyFeature" or "Name Blueprints with the prefix BP_". They guide the AI; eXe does not enforce them.
 
-1. Create the folder `ProjectDocs/eXe/Rules` in your project folder (next to the `.uproject` file). **Copy rules folder path** copies the path.
+1. Click **Copy rules folder path**. It creates the folder `ProjectDocs/eXe/Rules` in your project folder (next to the `.uproject` file) if it does not exist yet and copies its path. You can also create the folder yourself.
 2. Add one Markdown file per rule, for example `assets.md`, with one or a few sentences.
 3. Click **Check**. The line shows `Project rules: on · 1 active · 0 proposal(s) · ...`.
 

@@ -83,13 +83,13 @@ C++ changes need **Power Write**, and builds need the Visual Studio C++ tools an
 
 ### Live Coding
 
-For a change to existing C++ code, eXe uses Live Coding when the optional Engine plugin `LiveCodingToolset` is enabled. Live Coding updates the code in the running editor; the job shows **Live Coding running**.
+For a change inside existing `.cpp` files, eXe uses Live Coding when the optional Engine plugin `LiveCodingToolset` is enabled. Live Coding updates the code in the running editor; the job shows **Live Coding running**.
 
 Important: Live Coding changes only the running editor, not the files Unreal loads at the next start. **Before you restart Unreal after a Live Coding change, close it, build the project in your IDE (Visual Studio or Rider) and open it again.** Otherwise the C++ change is gone after the restart. eXe reminds you of this in the chat.
 
 ### Full builds
 
-Other C++ changes, for example a new class, need a full build. Unreal Build Tool can only build while the editor is closed.
+Other C++ changes need a full build, for example a new class, a changed header (`.h`), a changed `Build.cs` file or a changed constructor. Unreal Build Tool can only build while the editor is closed.
 
 - **Settings → General → Build → Run full builds without asking** applies to the current project only. When it is off, eXe asks you first, unless the plan you approved already includes the build: in the eXe chat (**Build now** / **Later**) or in the chat of your AI client. **Jobs** offers **Later**. When it is on, eXe builds right away.
 
@@ -118,7 +118,7 @@ eXe saves exactly the assets an approved step changed and nothing else. Your oth
 - **Changes list** above the chat input: select files or assets and click **Revert** to put them back to the state before the job. The current version is kept as a backup. If a later eXe job changed the same file, that newer change is reverted first.
 - **Jobs:** for a finished job, **Undo this job's changes** puts every file the job changed back to the copy saved when the job started.
 - Files someone changed after the job and unsaved editor changes are left alone and listed. C++ changes need a new build afterwards.
-- eXe keeps the saved copies for 14 days. After that a change stays listed but can no longer be put back.
+- eXe keeps the saved copies for 14 days. After that the change leaves the **Changes** list; **Jobs** still shows it, but it can no longer be put back.
 - Not covered: World Partition actor files (One File Per Actor) and files over 64 MB. eXe keeps no copy of them, so it cannot put them back. Changes an AI client made with its own tools are not covered either.
 - **Edit → Undo** in the editor still works for many editor changes in the current session.
 

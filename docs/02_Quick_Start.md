@@ -50,7 +50,7 @@ Expected result: eXe answers with an overview based on your actual project. Noth
 Good to know:
 
 - Answers come in **English** unless you change it under **Settings → General → eXe replies in**. Choose **Automatic (language of your message)** to get answers in the language you write in.
-- Broad requests such as `Analyze this project and suggest the most useful improvements` read a large part of the project and use more tokens than a narrow question. The line below the chat shows the tokens your provider reported ([Costs](04_Connect_AI_Providers.md#see-what-a-chat-costs)).
+- Broad requests such as `Analyze this project and suggest the most useful improvements` read a large part of the project and use more tokens than a narrow question. The line at the top of the chat shows the tokens your provider reported ([Costs](04_Connect_AI_Providers.md#see-what-a-chat-costs)).
 
 ## Part 2: Make a first change
 

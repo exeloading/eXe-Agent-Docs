@@ -40,7 +40,7 @@ In your sign-in service:
 In eXe, under **Settings → ChatGPT and remote access → ChatGPT / tunnel access with sign-in (OAuth)**:
 
 1. Enter the **Tunnel address** and the **Sign-in service** (for example `dev-abc123.eu.auth0.com`).
-2. Click **Check**. eXe reads the sign-in service and tells you in plain text what is missing.
+2. Click **Check**. eXe checks that the sign-in service is reachable and set up for sign-in, and tells you in plain text what is wrong. It cannot see the API, the permission or the application from the steps above, so check those in your sign-in service.
 3. Click **Save**, then close the editor and open the project again. Sign-in takes effect when the editor starts.
 
 eXe stores no client secrets or tokens. **Status** shows the saved setting. **Remove sign-in** removes it; after the next editor start, the setting without sign-in applies again.
@@ -54,7 +54,7 @@ Under **ChatGPT / tunnel access without sign-in**, choose a level. It applies im
 | Level | What anyone with the tunnel address can do |
 |---|---|
 | **Off** | Nothing (default) |
-| **Read + plan** | Read the project and prepare plans. Approval stays with you in Unreal. |
+| **Read + plan** | Read the project and prepare plans. These plans cannot be approved, not even in Unreal. For changes, set up sign-in or choose **Approve + execute**. |
 | **Approve + execute** | Also approve plans and run changes. eXe shows a warning and you must confirm it before this level applies. The header then shows **Remote can approve**. |
 
 When sign-in is active, this switch does not apply. YOLO never covers access without sign-in.

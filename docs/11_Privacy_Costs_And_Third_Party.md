@@ -4,7 +4,7 @@
 
 eXe Agent runs on your PC inside the Unreal Editor. There is no eXe account, no eXe server and no telemetry to the eXe developer. eXe sends nothing to the internet unless you configure a cloud AI provider, a tunnel or another service listed below.
 
-All eXe network endpoints listen on `127.0.0.1` only (by default ports 8798 to 8800 and 47861). Nothing listens on an external network interface.
+All eXe network endpoints listen on `127.0.0.1` only (by default ports 8798 to 8800 and 47861; a second open editor uses 8801 to 8803 and 47862, and so on). Nothing listens on an external network interface.
 
 ## What is sent where
 
