@@ -51,7 +51,7 @@ On this page:
   - [Why can Claude Code or Codex not run commands or edit my files in the eXe session?](#why-can-claude-code-or-codex-not-run-commands-or-edit-my-files-in-the-exe-session)
   - [How do I use eXe from ChatGPT?](#how-do-i-use-exe-from-chatgpt)
 - **[Product, license, updates and support](#product-license-updates-and-support)**
-  - [How is eXe Agent different from the AI assistant in Unreal Engine 5.9?](#how-is-exe-agent-different-from-the-ai-assistant-in-unreal-engine-59)
+  - [How is eXe Agent different from Epic's Unreal Assistant in Unreal Engine 5.9?](#how-is-exe-agent-different-from-epics-unreal-assistant-in-unreal-engine-59)
   - [Which Fab license do I need, Personal or Professional?](#which-fab-license-do-i-need-personal-or-professional)
   - [How do I get updates, and where do I get help?](#how-do-i-get-updates-and-where-do-i-get-help)
   - [Where can I suggest a feature or report a bug?](#where-can-i-suggest-a-feature-or-report-a-bug)
@@ -189,8 +189,20 @@ ChatGPT reaches eXe on your PC through a tunnel that you run yourself, for examp
 
 ## Product, license, updates and support
 
-### How is eXe Agent different from the AI assistant in Unreal Engine 5.9?
-Epic's assistant is part of Unreal Engine 5.9; for its features, see Epic's documentation. eXe Agent 1.0.0 runs on Unreal Engine 5.8. What eXe adds: you choose the AI (your own key, a local model, Claude Code, Codex or ChatGPT), larger changes wait for a plan you approve, eXe reads the result back and shows how far it is proven, every change is listed with revert, and the **Tools** view works without any AI.
+### How is eXe Agent different from Epic's Unreal Assistant in Unreal Engine 5.9?
+Epic's Unreal Assistant is a chat panel in the Unreal Engine 5.9 Preview, which Epic marks as Experimental; Epic expects the final 5.9 release in 2027. It runs Epic's own assistant service or an external agent, and 5.9 also brings new editor toolsets, a knowledge base and Unreal Canvas. eXe Agent 1.0.0 runs on the current Unreal Engine 5.8 and focuses on control over what changes in your project.
+
+Based on Epic's documentation for the 5.9 Preview, as of November 2026:
+
+| | eXe Agent 1.0 | Unreal Assistant (UE 5.9 Preview) |
+|---|---|---|
+| Engine | Unreal Engine 5.8. Support for 5.9 is planned as a free update after the final 5.9 release | Unreal Engine 5.9 Preview, Experimental |
+| AI | Your own API key (OpenAI, Anthropic, Gemini, DeepSeek), a local model (Ollama, LM Studio), Claude Code, Codex, Claude Desktop or ChatGPT | Epic's Unreal Assistant service, or Claude Code, Codex, Cursor, OpenCode or a custom agent signed in with your own account |
+| Plan before changes | eXe's own plan with exact targets and the targets that must not change; larger work waits for your approval in the chat | Depends on the agent's own modes, for example Claude Code's Plan mode. Epic's service has the levels Ask, Read, Edit, Auto and Full |
+| Checking the result | eXe reads the result back from the editor and ends every job with a result level, for example **Goal verified** | Epic's documentation describes no separate check |
+| Undo | Every change is listed; revert a file or a whole job from eXe's saved copies (kept 14 days) | Epic's documentation describes no undo for agent runs; **Edit → Undo** works as usual |
+
+Epic may change its assistant before the final 5.9 release. For its current features, see [Epic's documentation](https://dev.epicgames.com/documentation/unreal-engine/run-external-ai-agents-in-the-unreal-assistant-panel-in-unreal-engine).
 
 ### Which Fab license do I need, Personal or Professional?
 eXe Agent is sold on Fab under the Fab Standard License, which has two price tiers. According to [Fab's license page](https://dev.epicgames.com/documentation/fab/licenses-and-pricing-in-fab), **Personal** is for buyers who have not generated more than 100,000 USD in gross revenue from commercial activity in the last 12 months, and **Professional** is for buyers above that. Both tiers grant the same rights. Fab's End User License Agreement is binding. If you are unsure, ask us on Discord or by email.
