@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- ARTIFACT-START -->
+<title>eXe Agent for Unreal Engine</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<!-- ARTIFACT-SKIP-START -->
+<meta name="description" content="eXe Agent is an AI assistant inside the Unreal Editor. It shows a plan before larger changes, works only inside what you approved and checks the result. Bring your own AI. No eXe account, no eXe cloud, no subscription.">
+<meta property="og:title" content="eXe Agent for Unreal Engine">
+<meta property="og:description" content="Plan, approve and verify AI changes inside the Unreal Editor. Bring your own AI. No eXe account, no eXe cloud, no subscription.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://exeloading.github.io/eXe-Agent-Docs/assets/exe_thumbnail.png">
+<link rel="icon" type="image/png" href="assets/exe_icon_64.png">
+<!-- ARTIFACT-SKIP-END -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;112,700;112,800&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one calm column of sections; the hero shows the real thing, an eXe plan card as it appears in the editor. Dark first, like the Unreal Editor. */
+:root {
+  --bg: #0B1324;
+  --bg-band: #0E182C;
+  --panel: #121D33;
+  --panel-2: #18253F;
+  --line: #24324F;
+  --fg: #E9EEF6;
+  --muted: #9AA8C2;
+  --accent: #4C8DFF;
+  --accent-soft: rgba(76, 141, 255, 0.14);
+  --accent-ink: #0B1324;
+  --ok: #46C486;
+  --ok-soft: rgba(70, 196, 134, 0.14);
+  --warn: #E6B450;
+  --font-display: "Archivo", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", Consolas, "Courier New", monospace;
+  --step--1: 0.875rem;
+  --step-0: 1rem;
+  --step-1: 1.1875rem;
+  --step-2: 1.5rem;
+  --step-3: clamp(1.75rem, 1.3rem + 1.6vw, 2.25rem);
+  --step-4: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);
+  --radius: 10px;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #F5F7FB;
+    --bg-band: #ECF0F7;
+    --panel: #FFFFFF;
+    --panel-2: #F1F4FA;
+    --line: #D3DBE8;
+    --fg: #0B1324;
+    --muted: #4C5B76;
+    --accent: #2F6FE8;
+    --accent-soft: rgba(47, 111, 232, 0.10);
+    --accent-ink: #FFFFFF;
+    --ok: #17804F;
+    --ok-soft: rgba(23, 128, 79, 0.10);
+    --warn: #9A6400;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #F5F7FB;
+  --bg-band: #ECF0F7;
+  --panel: #FFFFFF;
+  --panel-2: #F1F4FA;
+  --line: #D3DBE8;
+  --fg: #0B1324;
+  --muted: #4C5B76;
+  --accent: #2F6FE8;
+  --accent-soft: rgba(47, 111, 232, 0.10);
+  --accent-ink: #FFFFFF;
+  --ok: #17804F;
+  --ok-soft: rgba(23, 128, 79, 0.10);
+  --warn: #9A6400;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+img, svg, video, iframe { max-width: 100%; }
+code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
+
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+section { padding-block: clamp(48px, 7vw, 88px); }
+.band { background: var(--bg-band); border-block: 1px solid var(--line); }
+
+h1, h2, h3 { font-family: var(--font-display); font-stretch: 112%; line-height: 1.15; margin: 0; text-wrap: balance; }
+h1 { font-size: var(--step-4); font-weight: 800; letter-spacing: -0.01em; }
+h2 { font-size: var(--step-3); font-weight: 700; }
+h3 { font-size: var(--step-1); font-weight: 700; }
+p { margin: 0; }
+.lede { font-size: var(--step-1); color: var(--muted); max-width: 60ch; }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.section-head { display: grid; gap: 12px; max-width: 68ch; margin-bottom: 36px; }
+.section-head p { color: var(--muted); }
+
+/* Top bar */
+.topbar { border-bottom: 1px solid var(--line); }
+.topbar .wrap { display: flex; align-items: center; gap: 24px; padding-block: 14px; flex-wrap: wrap; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--fg); text-decoration: none; font-family: var(--font-display); font-stretch: 112%; font-weight: 800; font-size: 1.125rem; }
+.brand svg { width: 30px; height: 30px; }
+.nav { display: flex; gap: 20px; flex-wrap: wrap; margin-left: auto; align-items: center; }
+.nav a { color: var(--muted); text-decoration: none; font-size: 0.9375rem; }
+.nav a:hover { color: var(--fg); }
+.nav a.btn-primary, .nav a.btn-primary:hover { color: var(--accent-ink); }
+.logo-x { fill: var(--accent); }
+.logo-legs { fill: var(--fg); }
+
+/* Buttons */
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 12px 20px; border-radius: 8px;
+  font-weight: 600; text-decoration: none; font-size: 0.9875rem;
+  border: 1px solid var(--line); color: var(--fg); background: var(--panel);
+}
+.btn:hover { border-color: var(--accent); }
+.btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn-primary:hover { filter: brightness(1.08); }
+.btn-small { padding: 8px 14px; font-size: 0.875rem; }
+
+/* Hero */
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 64px); align-items: center; }
+.hero-copy { display: grid; gap: 22px; min-width: 0; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 18px; color: var(--muted); font-size: var(--step--1); font-family: var(--font-mono); }
+.facts span::before { content: "■ "; color: var(--accent); font-size: 0.7em; vertical-align: 0.15em; }
+
+/* Editor mock: an eXe Agent chat with a plan card */
+.editor {
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 24px 60px -28px rgba(0, 0, 0, 0.55);
+  overflow: hidden;
+  font-size: 0.875rem;
+}
+.editor-tab { display: flex; align-items: center; gap: 10px; padding: 9px 14px; border-bottom: 1px solid var(--line); background: var(--panel-2); }
+.editor-tab svg { width: 16px; height: 16px; }
+.editor-tab strong { font-weight: 600; }
+.editor-tab .status { margin-left: auto; color: var(--muted); font-size: 0.8125rem; display: flex; align-items: center; gap: 6px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); display: inline-block; }
+.editor-body { padding: 16px; display: grid; gap: 12px; }
+.msg-user { justify-self: end; max-width: 88%; background: var(--accent-soft); border: 1px solid var(--line); border-radius: 10px 10px 2px 10px; padding: 9px 12px; }
+.plan { border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+.plan-head { padding: 9px 12px; background: var(--panel-2); border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.plan-head strong { font-weight: 600; }
+.plan-head span { color: var(--muted); font-family: var(--font-mono); font-size: 0.75rem; }
+.plan ol { margin: 0; padding: 10px 12px 10px 32px; display: grid; gap: 4px; }
+.scope { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; padding: 10px 12px; border-top: 1px solid var(--line); font-size: 0.8125rem; }
+.scope dt { color: var(--muted); }
+.scope dd { margin: 0; font-family: var(--font-mono); font-size: 0.78rem; overflow-wrap: anywhere; }
+.decision { border: 1px solid var(--accent); border-radius: 8px; padding: 10px 12px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; background: var(--accent-soft); }
+.decision p { flex: 1 1 180px; font-weight: 500; }
+.fake-btn { font: inherit; font-size: 0.8125rem; font-weight: 600; padding: 6px 12px; border-radius: 6px; border: 1px solid var(--line); background: var(--panel); color: var(--fg); }
+.fake-btn.yes { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.result { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; color: var(--muted); font-size: 0.8125rem; }
+.pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 999px; font-weight: 600; font-size: 0.78rem; background: var(--ok-soft); color: var(--ok); border: 1px solid currentColor; }
+.mock-note { color: var(--muted); font-size: 0.75rem; text-align: center; padding: 0 16px 12px; }
+
+/* Video */
+.video-frame {
+  position: relative; aspect-ratio: 16 / 9; width: 100%; max-width: 880px;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  background:
+    linear-gradient(135deg, var(--accent-soft), transparent 60%),
+    var(--panel);
+  display: grid; place-items: center; text-align: center; overflow: hidden;
+}
+.video-frame iframe, .video-frame video { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.video-inner { display: grid; gap: 10px; justify-items: center; padding: 24px; }
+.play { width: 64px; height: 64px; border-radius: 50%; border: 2px solid var(--accent); display: grid; place-items: center; }
+.play::after { content: ""; border-left: 18px solid var(--accent); border-top: 11px solid transparent; border-bottom: 11px solid transparent; margin-left: 5px; }
+.video-inner p { color: var(--muted); }
+
+/* Steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; counter-reset: step; }
+.steps li { counter-increment: step; display: grid; gap: 8px; align-content: start; padding-top: 14px; border-top: 2px solid var(--line); }
+.steps li::before { content: counter(step); font-family: var(--font-mono); font-size: var(--step--1); color: var(--accent); }
+.steps li:nth-child(3) { border-top-color: var(--accent); }
+.steps p { color: var(--muted); font-size: 0.9375rem; }
+
+/* Capability list */
+.areas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--line); }
+.areas div { padding: 18px 20px 18px 0; border-bottom: 1px solid var(--line); display: grid; gap: 4px; align-content: start; min-width: 0; }
+.areas h3 { font-size: 1.0625rem; }
+.areas p { color: var(--muted); font-size: 0.9375rem; }
+
+/* Two column feature blocks */
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.checklist li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; }
+.checklist li::before { content: ""; width: 14px; height: 14px; margin-top: 6px; border-radius: 3px; border: 2px solid var(--accent); }
+.checklist strong { font-weight: 600; }
+.checklist span { color: var(--muted); }
+
+.levels { display: grid; gap: 0; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; background: var(--panel); }
+.levels div { display: grid; grid-template-columns: minmax(0, 13em) minmax(0, 1fr); gap: 12px; padding: 12px 16px; border-bottom: 1px solid var(--line); font-size: 0.9375rem; }
+.levels div:last-child { border-bottom: 0; }
+.levels b { font-weight: 600; }
+.levels b.top { color: var(--ok); }
+.levels span { color: var(--muted); }
+
+.providers { display: flex; flex-wrap: wrap; gap: 8px; }
+.providers span { border: 1px solid var(--line); background: var(--panel); border-radius: 6px; padding: 6px 12px; font-size: 0.9375rem; }
+.providers-group { display: grid; gap: 10px; }
+.providers-group h3 { font-size: 0.9375rem; font-family: var(--font-body); font-stretch: normal; color: var(--muted); font-weight: 500; }
+.stack { display: grid; gap: 24px; }
+
+.tools { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.tool { border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; background: var(--panel); display: grid; gap: 6px; align-content: start; min-width: 0; }
+.tool p { color: var(--muted); font-size: 0.9375rem; }
+
+.req { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
+.req div { display: grid; grid-template-columns: minmax(0, 11em) minmax(0, 1fr); gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.req dt { color: var(--muted); }
+.req dd { margin: 0; }
+
+/* FAQ */
+.faq { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 48px; }
+.faq div { display: grid; gap: 8px; align-content: start; min-width: 0; }
+.faq h3 { font-size: 1.0625rem; }
+.faq p { color: var(--muted); }
+
+/* Final call and footer */
+.cta { text-align: left; display: grid; gap: 18px; justify-items: start; }
+.cta p { color: var(--muted); max-width: 60ch; }
+.footer { border-top: 1px solid var(--line); padding-block: 32px; color: var(--muted); font-size: 0.875rem; }
+.footer .wrap { display: grid; gap: 18px; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+.footer-links a { color: var(--fg); }
+.legal { font-size: 0.8125rem; max-width: 90ch; }
+
+@media (max-width: 960px) {
+  .hero .wrap, .split { grid-template-columns: minmax(0, 1fr); }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .areas, .tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .nav { margin-left: 0; width: 100%; gap: 14px; }
+  .steps, .areas, .tools, .faq, .req { grid-template-columns: minmax(0, 1fr); }
+  .levels div, .req div { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .btn { transition: border-color 0.15s ease, filter 0.15s ease; }
+}
+</style>
+<!-- ARTIFACT-SKIP-START -->
+</head>
+<body>
+<!-- ARTIFACT-SKIP-END -->
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="eXe Agent home">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><polygon class="logo-x" points="17.02,19 30.02,19 33,23.09 44,8 57,8 33,40.91"/><polygon class="logo-legs" points="23.72,35.82 9,56 22,56 30.22,44.73"/><polygon class="logo-legs" points="42.28,35.82 57,56 44,56 35.78,44.73"/></svg>
+      eXe Agent
+    </a>
+    <nav class="nav" aria-label="Page">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#faq">FAQ</a>
+      <a href="https://github.com/exeloading/eXe-Agent-Docs/blob/main/docs/INDEX.md">Docs</a>
+      <a class="btn btn-primary btn-small" href="https://www.fab.com/listings/0e9927a9-d958-4e69-b2a9-27cbb135817f">Get it on Fab</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">AI assistant for the Unreal Editor</p>
+        <h1>The AI shows its plan. You approve. eXe checks the result.</h1>
+        <p class="lede">eXe Agent works inside the Unreal Editor. It reads your project, makes small changes you ask for directly, shows a plan for larger work, stays inside what you approved and reads the result back before it reports success. You bring your own AI.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://www.fab.com/listings/0e9927a9-d958-4e69-b2a9-27cbb135817f">Get eXe Agent on Fab</a>
+          <a class="btn" href="https://github.com/exeloading/eXe-Agent-Docs/blob/main/docs/02_Quick_Start.md">Read the Quick Start</a>
+        </div>
+        <p class="facts"><span>Unreal Engine 5.8</span><span>Windows 64-bit</span><span>No eXe account</span><span>No subscription</span></p>
+      </div>
+
+      <figure class="editor" aria-label="Example of the eXe Agent window with a plan waiting for approval" style="margin:0">
+        <div class="editor-tab">
+          <svg viewBox="0 0 64 64" aria-hidden="true"><polygon class="logo-x" points="17.02,19 30.02,19 33,23.09 44,8 57,8 33,40.91"/><polygon class="logo-legs" points="23.72,35.82 9,56 22,56 30.22,44.73"/><polygon class="logo-legs" points="42.28,35.82 57,56 44,56 35.78,44.73"/></svg>
+          <strong>eXe Agent</strong>
+          <span class="status"><i class="dot"></i>eXe running</span>
+        </div>
+        <div class="editor-body">
+          <p class="msg-user">Add a float Stamina with default 100 to BP_PlayerCharacter and a function DrainStamina with a float parameter Amount. Show me the plan first.</p>
+          <div class="plan">
+            <div class="plan-head"><strong>Plan · 3 steps</strong><span>sealed</span></div>
+            <ol>
+              <li>Add the float variable <code>Stamina</code>, default 100</li>
+              <li>Add the function <code>DrainStamina</code> with the float parameter <code>Amount</code></li>
+              <li>Compile, save and read the values back</li>
+            </ol>
+            <dl class="scope">
+              <dt>May change only</dt><dd>/Game/Characters/BP_PlayerCharacter</dd>
+              <dt>Must not change</dt><dd>/Game/Maps/MainLevel</dd>
+            </dl>
+          </div>
+          <div class="decision">
+            <p>The plan above is ready for your approval</p>
+            <span class="fake-btn yes" aria-hidden="true">Approve plan</span>
+            <span class="fake-btn" aria-hidden="true">Not now</span>
+          </div>
+          <div class="result"><span class="pill">Goal verified</span> after approval, with every change listed for revert</div>
+        </div>
+        <figcaption class="mock-note">Simplified example of a plan in the eXe Agent window</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="band" id="video" aria-labelledby="video-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Overview</p>
+        <h2 id="video-title">See a task from request to verified result</h2>
+      </div>
+      <!-- VIDEO: replace the .video-inner block with the final video, for example
+           <iframe src="https://www.youtube-nocookie.com/embed/VIDEO_ID" title="eXe Agent overview" allow="encrypted-media; picture-in-picture" allowfullscreen></iframe>
+           or <video src="assets/exe_overview.mp4" poster="assets/exe_thumbnail.png" controls preload="none"></video> -->
+      <div class="video-frame">
+        <div class="video-inner">
+          <div class="play" aria-hidden="true"></div>
+          <p><strong>Overview video</strong><br>The video will appear here at release.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how" aria-labelledby="how-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">How it works</p>
+        <h2 id="how-title">Every job runs the same five steps</h2>
+        <p>Small, clear changes you ask for run directly and are still read back. Larger work, deletes and Python scripts wait for your approval of an exact plan.</p>
+      </div>
+      <ol class="steps">
+        <li><h3>Ask</h3><p>Describe the task in your own words, in the eXe chat or in a connected AI client.</p></li>
+        <li><h3>Plan</h3><p>eXe prepares a plan with exact targets: what may change and what must not change.</p></li>
+        <li><h3>Approve</h3><p>You approve the plan in the chat or ask for a revision. Nothing in it is written before that.</p></li>
+        <li><h3>Execute</h3><p>eXe edits, saves, compiles and repairs failed steps, but only inside the approved scope.</p></li>
+        <li><h3>Verify</h3><p>eXe reads the result back from the editor and ends the job with a clear result level.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band" id="features" aria-labelledby="features-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">What it works on</p>
+        <h2 id="features-title">From Blueprints to builds, in the project you have open</h2>
+        <p>eXe reads Blueprints, C++, assets, levels and settings, and changes them through Unreal's own editor tools.</p>
+      </div>
+      <div class="areas">
+        <div><h3>Blueprints</h3><p>Variables, default values, components, functions with parameters and graph nodes. Compile, save and read back.</p></div>
+        <div><h3>C++</h3><p>Create and edit classes and source files, Live Coding or a full build with Unreal Build Tool. Needs Power Write.</p></div>
+        <div><h3>Assets and materials</h3><p>Create, rename, move and import assets. Materials, material instances and parameters.</p></div>
+        <div><h3>Levels and world</h3><p>Place, move and configure actors, blockouts, landscape, foliage and PCG.</p></div>
+        <div><h3>UMG and animation</h3><p>Widget Blueprints and texts, Animation Blueprints, montages, sequences and skeletons.</p></div>
+        <div><h3>Gameplay, audio and VFX</h3><p>Enhanced Input, Gameplay Tags, State Trees, Behavior Trees, MetaSounds and Niagara.</p></div>
+        <div><h3>Play in Editor tests</h3><p>Game runs with input, log and state checks and a screenshot after game steps.</p></div>
+        <div><h3>Logs and errors</h3><p>Reads the output log and build results and fixes the cause inside an approved plan.</p></div>
+        <div><h3>7 interface languages</h3><p>English, German, Spanish, French, Japanese, Korean and Simplified Chinese. Replies in the language you choose.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="control" aria-labelledby="control-title">
+    <div class="wrap split">
+      <div class="stack">
+        <div class="section-head" style="margin-bottom:0">
+          <p class="eyebrow">You stay in control</p>
+          <h2 id="control-title">Approve what changes, and undo it</h2>
+        </div>
+        <ul class="checklist">
+          <li><div><strong>Plan before changes.</strong> <span>Automatic, Only when I ask or Always. With Always, every change waits for your approval.</span></div></li>
+          <li><div><strong>Changes list with revert.</strong> <span>Every finished job lists the files and assets it changed, with a diff for text files, keep and revert. eXe keeps a copy for 14 days, except for World Partition actor files and files over 64 MB.</span></div></li>
+          <li><div><strong>Power Write and YOLO start off.</strong> <span>C++ changes and Python scripts need Power Write. YOLO, which approves plans for you, stays off until you turn it on.</span></div></li>
+          <li><div><strong>Stop at any time.</strong> <span>Stop a reply in the chat or end a job in Jobs. Finished steps stay listed for review.</span></div></li>
+        </ul>
+      </div>
+      <div class="stack">
+        <h3>Every job ends with a result level</h3>
+        <div class="levels" role="table" aria-label="Result levels">
+          <div role="row"><b class="top" role="cell">Goal verified</b><span role="cell">eXe read fresh values back from the editor, and they meet the goal of the plan.</span></div>
+          <div role="row"><b role="cell">Goal not independently verified</b><span role="cell">Reported as reached, but eXe could not confirm it itself, for example a visual change.</span></div>
+          <div role="row"><b role="cell">Change proven</b><span role="cell">The change itself is proven, the overall goal is not.</span></div>
+          <div role="row"><b role="cell">Failure</b><span role="cell">A step failed, and the job shows the reason.</span></div>
+        </div>
+        <p style="color:var(--muted)">eXe never shows a higher level than its checks support.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="ai" aria-labelledby="ai-title">
+    <div class="wrap split">
+      <div class="section-head" style="margin-bottom:0">
+        <p class="eyebrow">Bring your own AI</p>
+        <h2 id="ai-title">Use the AI you already have</h2>
+        <p>eXe includes no AI model and has no server of its own. Each AI service runs under your own key or account and bills you directly. The chat shows the tokens your provider reported, and an estimate if you enter your prices.</p>
+        <p>With a local model and the Tools view, nothing leaves your PC.</p>
+      </div>
+      <div class="stack">
+        <div class="providers-group">
+          <h3>In the eXe chat, with your API key</h3>
+          <div class="providers"><span>OpenAI</span><span>Anthropic</span><span>Gemini</span><span>DeepSeek</span></div>
+        </div>
+        <div class="providers-group">
+          <h3>On your PC, no cloud</h3>
+          <div class="providers"><span>Ollama</span><span>LM Studio</span><span>Other servers with an OpenAI-compatible API</span></div>
+        </div>
+        <div class="providers-group">
+          <h3>With your own login</h3>
+          <div class="providers"><span>Claude Code</span><span>Codex</span><span>Claude Desktop</span><span>ChatGPT, through your own tunnel</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools" aria-labelledby="tools-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Useful without any AI</p>
+        <h2 id="tools-title">The Tools view needs no API key</h2>
+        <p>It reads the Content Browser selection, the open folder or the open level, and changes nothing except when you build.</p>
+      </div>
+      <div class="tools">
+        <div class="tool"><h3>Check assets</h3><p>Blueprint compile state, unconnected events and folder conventions.</p></div>
+        <div class="tool"><h3>Check open level</h3><p>Finds actors stacked on exactly the same spot.</p></div>
+        <div class="tool"><h3>Explain Blueprint</h3><p>Components, variables, functions and what each graph calls.</p></div>
+        <div class="tool"><h3>Dependencies</h3><p>What an asset uses and what uses it, before you delete or move it.</p></div>
+        <div class="tool"><h3>Clean-up report</h3><p>Broken references, leftover redirectors and assets nothing references.</p></div>
+        <div class="tool"><h3>Build project</h3><p>Builds with Unreal Build Tool and lists the compiler errors.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="requirements" aria-labelledby="req-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Requirements</p>
+        <h2 id="req-title">What you need</h2>
+      </div>
+      <dl class="req">
+        <div><dt>Engine</dt><dd>Unreal Engine 5.8 (tested with 5.8.4)</dd></div>
+        <div><dt>Platform</dt><dd>Windows 64-bit</dd></div>
+        <div><dt>Engine plugins</dt><dd>Model Context Protocol, Toolset Registry, Python Editor Script Plugin and others, listed in the <a href="https://github.com/exeloading/eXe-Agent-Docs/blob/main/docs/01_Installation.md">Installation guide</a></dd></div>
+        <div><dt>For C++ work</dt><dd>The Visual Studio C++ tools and Windows SDK that Unreal Engine 5.8 requires</dd></div>
+        <div><dt>For AI features</dt><dd>Your own API key, a local model, or Claude Code, Codex, Claude Desktop or ChatGPT</dd></div>
+        <div><dt>Python, Node.js</dt><dd>Python comes with Unreal. Node.js only for Claude Desktop</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-title">Common questions</h2>
+        <p>More answers in the <a href="https://github.com/exeloading/eXe-Agent-Docs/blob/main/docs/12_FAQ.md">full FAQ</a>, and every message eXe shows in <a href="https://github.com/exeloading/eXe-Agent-Docs/blob/main/docs/08_Troubleshooting_And_FAQ.md">Troubleshooting</a>.</p>
+      </div>
+      <div class="faq">
+        <div><h3>Do I need an API key?</h3><p>Not necessarily. You can use your own API key, a local model on your PC, or Claude Code, Codex or Claude Desktop with your own login. The Tools view works without any AI.</p></div>
+        <div><h3>Is my ChatGPT Plus or Claude Pro subscription an API key?</h3><p>No. A chat subscription and API access are separate products. With your Claude or ChatGPT login you can use Claude Code, Codex or Claude Desktop instead.</p></div>
+        <div><h3>What does it cost?</h3><p>You pay the plugin price on Fab once. There is no eXe subscription. AI use is billed by the provider you connect, under your own account.</p></div>
+        <div><h3>Does eXe send my project to your servers?</h3><p>No. There are no eXe servers, no eXe account and no telemetry. Your messages and the project data the AI requests go only to the AI provider you choose.</p></div>
+        <div><h3>Will eXe change my project without asking?</h3><p>Only small, clear changes you ask for run directly. Larger work, deletes and Python scripts wait for your approval. Every change is listed, and most can be reverted from eXe's saved copy. Use version control as well.</p></div>
+        <div><h3>Does it work with Blueprint-only projects?</h3><p>Yes. Blueprint, asset, level, material and UMG work needs no C++ and no build.</p></div>
+        <div><h3>Can eXe change C++ code?</h3><p>Yes, after you turn on Power Write. eXe uses Live Coding for changes inside existing .cpp files where it can, otherwise a full build with Unreal Build Tool from your own Engine.</p></div>
+        <div><h3>How is eXe different from Epic's Unreal Assistant in 5.9?</h3><p>Epic's Unreal Assistant is an Experimental panel in the Unreal Engine 5.9 Preview; the final 5.9 is expected in 2027. eXe runs on Unreal Engine 5.8 and brings its own plan with exact targets that waits for your approval, a read-back check with a result level for every job, and revert per file or job. <a href="https://github.com/exeloading/eXe-Agent-Docs/blob/main/docs/12_FAQ.md#how-is-exe-agent-different-from-epics-unreal-assistant-in-unreal-engine-59">Comparison table</a></p></div>
+        <div><h3>Will eXe Agent support Unreal Engine 5.9?</h3><p>Yes, support for Unreal Engine 5.9 is planned as a free update after Epic releases 5.9 and Fab accepts it.</p></div>
+        <div><h3>Where do I get help?</h3><p>In the <a href="https://github.com/exeloading/eXe-Agent-Docs">documentation</a>, on <a href="https://discord.gg/ebW7kKCC25">Discord</a> or by email to <a href="mailto:exeagent.support@gmail.com">exeagent.support@gmail.com</a>.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="cta-title">
+    <div class="wrap cta">
+      <h2 id="cta-title">Try it on your own project</h2>
+      <p>Install eXe Agent from Fab, turn on Unreal's MCP server and ask for a short overview of your project. The Quick Start takes you through your first answer and your first change.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://www.fab.com/listings/0e9927a9-d958-4e69-b2a9-27cbb135817f">Get eXe Agent on Fab</a>
+        <a class="btn" href="https://discord.gg/ebW7kKCC25">Join the Discord</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-links">
+      <a href="https://www.fab.com/listings/0e9927a9-d958-4e69-b2a9-27cbb135817f">Fab</a>
+      <a href="https://github.com/exeloading/eXe-Agent-Docs">Documentation</a>
+      <a href="https://github.com/exeloading/eXe-Agent-Docs/blob/main/docs/11_Privacy_Costs_And_Third_Party.md">Privacy and costs</a>
+      <a href="https://discord.gg/ebW7kKCC25">Discord</a>
+      <a href="mailto:exeagent.support@gmail.com">exeagent.support@gmail.com</a>
+    </div>
+    <p>© 2026 eXe.Loading. eXe Agent is sold on Fab under the Fab Standard License.</p>
+    <p class="legal">Unreal and Unreal Engine are trademarks or registered trademarks of Epic Games, Inc. in the United States and elsewhere. All other product names are trademarks of their owners. eXe Agent is not affiliated with or endorsed by Epic Games or the AI providers named on this page.</p>
+  </div>
+</footer>
+<!-- ARTIFACT-END -->
+</body>
+</html>
