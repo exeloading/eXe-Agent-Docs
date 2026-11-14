@@ -7,9 +7,9 @@
 <title>eXe Agent for Unreal Engine</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <!-- ARTIFACT-SKIP-START -->
-<meta name="description" content="eXe Agent is an AI assistant inside the Unreal Editor. It shows a plan before larger changes, works only inside what you approved and checks the result. Bring your own AI. No account, no cloud, no subscription.">
+<meta name="description" content="eXe Agent is an AI assistant inside the Unreal Editor. It shows a plan before larger changes, works only inside what you approved and checks the result. Bring your own AI. No eXe account, no eXe cloud, no subscription.">
 <meta property="og:title" content="eXe Agent for Unreal Engine">
-<meta property="og:description" content="Plan, approve and verify AI changes inside the Unreal Editor. Bring your own AI. No account, no cloud, no subscription.">
+<meta property="og:description" content="Plan, approve and verify AI changes inside the Unreal Editor. Bring your own AI. No eXe account, no eXe cloud, no subscription.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="https://exeloading.github.io/eXe-Agent-Docs/assets/exe_thumbnail.png">
 <link rel="icon" type="image/png" href="assets/exe_icon_64.png">
@@ -404,7 +404,7 @@ p { margin: 0; }
         </div>
         <ul class="checklist">
           <li><div><strong>Plan before changes.</strong> <span>Automatic, Only when I ask or Always. With Always, every change waits for your approval.</span></div></li>
-          <li><div><strong>Changes list with revert.</strong> <span>Every finished job lists the files and assets it changed, with diff, keep and revert. eXe keeps a copy for 14 days.</span></div></li>
+          <li><div><strong>Changes list with revert.</strong> <span>Every finished job lists the files and assets it changed, with a diff for text files, keep and revert. eXe keeps a copy for 14 days, except for World Partition actor files and files over 64 MB.</span></div></li>
           <li><div><strong>Power Write and YOLO start off.</strong> <span>C++ changes and Python scripts need Power Write. YOLO, which approves plans for you, stays off until you turn it on.</span></div></li>
           <li><div><strong>Stop at any time.</strong> <span>Stop a reply in the chat or end a job in Jobs. Finished steps stay listed for review.</span></div></li>
         </ul>
@@ -472,7 +472,7 @@ p { margin: 0; }
         <h2 id="req-title">What you need</h2>
       </div>
       <dl class="req">
-        <div><dt>Engine</dt><dd>Unreal Engine 5.8 (tested with 5.8.3)</dd></div>
+        <div><dt>Engine</dt><dd>Unreal Engine 5.8 (tested with 5.8.4)</dd></div>
         <div><dt>Platform</dt><dd>Windows 64-bit</dd></div>
         <div><dt>Engine plugins</dt><dd>Model Context Protocol, Toolset Registry, Python Editor Script Plugin and others, listed in the <a href="https://github.com/exeloading/eXe-Agent-Docs/blob/main/docs/01_Installation.md">Installation guide</a></dd></div>
         <div><dt>For C++ work</dt><dd>The Visual Studio C++ tools and Windows SDK that Unreal Engine 5.8 requires</dd></div>
@@ -494,7 +494,7 @@ p { margin: 0; }
         <div><h3>Is my ChatGPT Plus or Claude Pro subscription an API key?</h3><p>No. A chat subscription and API access are separate products. With your Claude or ChatGPT login you can use Claude Code, Codex or Claude Desktop instead.</p></div>
         <div><h3>What does it cost?</h3><p>You pay the plugin price on Fab once. There is no eXe subscription. AI use is billed by the provider you connect, under your own account.</p></div>
         <div><h3>Does eXe send my project to your servers?</h3><p>No. There are no eXe servers, no eXe account and no telemetry. Your messages and the project data the AI requests go only to the AI provider you choose.</p></div>
-        <div><h3>Will eXe change my project without asking?</h3><p>Only small, clear changes you ask for run directly. Larger work, deletes and Python scripts wait for your approval. Every change is listed and can be reverted. Use version control as well.</p></div>
+        <div><h3>Will eXe change my project without asking?</h3><p>Only small, clear changes you ask for run directly. Larger work, deletes and Python scripts wait for your approval. Every change is listed, and most can be reverted from eXe's saved copy. Use version control as well.</p></div>
         <div><h3>Does it work with Blueprint-only projects?</h3><p>Yes. Blueprint, asset, level, material and UMG work needs no C++ and no build.</p></div>
         <div><h3>Can eXe change C++ code?</h3><p>Yes, after you turn on Power Write. eXe uses Live Coding for changes inside existing .cpp files where it can, otherwise a full build with Unreal Build Tool from your own Engine.</p></div>
         <div><h3>How is eXe different from Epic's Unreal Assistant in 5.9?</h3><p>Epic's Unreal Assistant is an Experimental panel in the Unreal Engine 5.9 Preview; the final 5.9 is expected in 2027. eXe runs on Unreal Engine 5.8 and brings its own plan with exact targets that waits for your approval, a read-back check with a result level for every job, and revert per file or job. <a href="https://github.com/exeloading/eXe-Agent-Docs/blob/main/docs/12_FAQ.md#how-is-exe-agent-different-from-epics-unreal-assistant-in-unreal-engine-59">Comparison table</a></p></div>
