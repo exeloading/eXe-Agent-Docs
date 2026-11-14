@@ -62,7 +62,7 @@ On this page:
 eXe Agent is an AI assistant inside the Unreal Editor. You describe a task in your own words. eXe reads your project, makes small changes directly or shows a plan for larger work, works only inside what you approved, and checks the result in the editor. Every change is listed so you can undo it. You bring your own AI: an API key, a local model, Claude Code, Codex or ChatGPT.
 
 ### Which Unreal Engine versions and platforms are supported?
-eXe Agent 1.0.0 supports Unreal Engine 5.8 on Windows 64-bit. It was tested with 5.8.3. macOS, Linux and other engine versions are not supported in this version. eXe uses experimental engine features, so a future engine version may need a plugin update.
+eXe Agent 1.0.0 supports Unreal Engine 5.8 on Windows 64-bit. It was tested with 5.8.4. macOS, Linux and other engine versions are not supported in this version. eXe uses experimental engine features, so a future engine version may need a plugin update.
 
 ### Will eXe Agent support Unreal Engine 5.9?
 Yes, support for Unreal Engine 5.9 is planned as a free update after Epic releases 5.9 and Fab accepts it. Until then, use eXe Agent with Unreal Engine 5.8.
@@ -143,7 +143,7 @@ Yes. Set **Settings → Permissions → Plan before changes** to **Always**. The
 In the chat, click **Stop** to stop the current reply. In **Jobs**, select the job and click **Stop work** or **Cancel work**; both end the job the same way. While the job runs, they only record a different word (**Stopped** or **Cancelled**); a plan that has not started is recorded as **Cancelled**. Changes from finished steps stay listed under **Changes**, and you can revert them where eXe kept a copy.
 
 ### How do I undo a change?
-Above the chat input, **Changes** lists what finished jobs changed. Select a row and click **Revert** to put it back to the state before the job; the current version is kept as a backup. In **Jobs**, **Undo this job's changes** reverts a whole job. eXe keeps its copies for 14 days and keeps none for World Partition actor files or files over 64 MB, so also use version control.
+Above the chat input, **Changes** lists what finished jobs changed. Select a row and click **Revert** to put it back to the state before the job; the current version is kept as a backup. In **Jobs**, **Undo this job's changes** reverts a whole job. eXe keeps its copies for 14 days and keeps none for World Partition actor files or files over 64 MB, so also use version control. **Edit → Undo** (Ctrl+Z) is not a supported way to undo eXe's changes: only some steps appear in the editor's undo history.
 
 ### What are Power Write and YOLO?
 **Power Write** lets approved plans change C++ and other source files and run Python scripts. Unreal's Undo does not cover these changes. **YOLO** lets eXe approve and run plans from local or signed-in AI clients without asking you, for up to 90 minutes per job. Both are off after installation and apply to all your projects. The header shows a warning while YOLO is on.
@@ -154,7 +154,7 @@ No. eXe does not commit, push or merge. Use your version control as usual, and c
 ## Builds and C++
 
 ### Can eXe change C++ code?
-Yes, after you turn on **Power Write**. For a change inside existing `.cpp` files, eXe can use Live Coding when the optional `LiveCodingToolset` Engine plugin is enabled. New classes and changes to headers, `Build.cs` files or constructors need a full build. After a Live Coding change, build the project in your IDE before you restart Unreal, or the change is lost.
+Yes, after you turn on **Power Write**. For a change inside existing `.cpp` files, eXe can use Live Coding through the `LiveCodingToolset` Engine plugin, which is switched on together with eXe Agent. New classes and changes to headers, `Build.cs` files or constructors need a full build. After a Live Coding change, build the project in your IDE before you restart Unreal, or the change is lost.
 
 ### Why did the editor close, why does it not open again, and what if the build failed?
 A full build needs the editor to be closed, so eXe closes it and Unreal Build Tool runs in a console window. eXe never restarts the editor. When the console window has closed, open your project again and eXe continues the job. If the build failed, open `Saved/eXe.Loading/LAST_FULL_BUILD.md` in your project: it names the build log and the next steps.
@@ -200,7 +200,7 @@ Based on Epic's documentation for the 5.9 Preview, as of November 2026:
 | AI | Your own API key (OpenAI, Anthropic, Gemini, DeepSeek), a local model (Ollama, LM Studio), Claude Code, Codex, Claude Desktop or ChatGPT | Epic's Unreal Assistant service, or Claude Code, Codex, Cursor, OpenCode or a custom agent signed in with your own account |
 | Plan before changes | eXe's own plan with exact targets and the targets that must not change; larger work waits for your approval in the chat | Depends on the agent's own modes, for example Claude Code's Plan mode. Epic's service has the levels Ask, Read, Edit, Auto and Full |
 | Checking the result | eXe reads the result back from the editor and ends every job with a result level, for example **Goal verified** | Epic's documentation describes no separate check |
-| Undo | Every change is listed; revert a file or a whole job from eXe's saved copies (kept 14 days) | Epic's documentation describes no undo for agent runs; **Edit → Undo** works as usual |
+| Undo | Every change is listed; revert a file or a whole job from eXe's saved copies (kept 14 days); **Edit → Undo** is not supported for eXe's steps | Epic's documentation describes no undo for agent runs; **Edit → Undo** works as usual |
 
 Epic may change its assistant before the final 5.9 release. For its current features, see [Epic's documentation](https://dev.epicgames.com/documentation/unreal-engine/run-external-ai-agents-in-the-unreal-assistant-panel-in-unreal-engine).
 

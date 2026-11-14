@@ -4,7 +4,7 @@ eXe Agent is an AI development assistant inside the Unreal Editor. It reads your
 
 ```text
 Version: 1.0.0
-Unreal Engine: 5.8 (tested with 5.8.3)
+Unreal Engine: 5.8 (tested with 5.8.4)
 Plugin type: Editor-only code plugin with an embedded Python core
 Supported platform: Win64
 Publisher: eXe.Loading

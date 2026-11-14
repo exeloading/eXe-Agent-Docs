@@ -5,7 +5,7 @@ This page explains how to install eXe Agent, check that it works, update it and 
 ## Requirements
 
 - Windows 64-bit
-- Unreal Engine 5.8 (tested with 5.8.3)
+- Unreal Engine 5.8 (tested with 5.8.4)
 - A Blueprint project or a C++ project
 - For C++ changes and builds only: the Visual Studio C++ tools and the Windows SDK that Unreal Engine 5.8 requires. Blueprint, asset and level work does not need them.
 - For AI features: your own API key, a local model on your PC, or an official AI client such as Claude Code or Codex. Without any AI, the **Tools** view still works.
@@ -21,9 +21,9 @@ These Engine plugins ship with Unreal Engine 5.8. They are switched on together 
 | `PythonScriptPlugin` | Python Editor Script Plugin; runs the eXe core inside the editor |
 | `ModelContextProtocol` | Unreal's MCP server (experimental); the way eXe works in the editor |
 | `ToolsetRegistry` | Unreal's toolsets (experimental); the editor tools eXe calls |
+| `AllToolsets` | Unreal's editor toolsets (experimental); eXe reads and changes actors, assets, Blueprints and materials through them |
+| `LiveCodingToolset` | Live Coding for changes inside existing `.cpp` files (experimental) |
 | `EditorScriptingUtilities`, `EnhancedInput`, `Niagara`, `MeshModelingToolset`, `ModelViewViewModel`, `StateTree`, `MetaSound`, `GameplayTagsEditor` | Used by eXe's Unreal tools |
-
-Optional Engine plugins: `LiveCodingToolset` and `AllToolsets`. eXe works without them; some tools are only available when they are on.
 
 eXe Agent does not copy, replace or redistribute any Engine files.
 
@@ -116,10 +116,12 @@ Fab updates arrive through the Epic Games Launcher. Close the editor before you 
 
 ## Remove
 
-1. Optional, before you disable the plugin: remove saved API keys. In **Chat**, open the AI controller and click **Remove saved key**; it removes the key of the provider saved for this project. For another provider, choose it, leave the key field blank, click **Save** and then **Remove saved key**. To remove a key for asset generation, open **Settings → Asset generation**, choose the provider, leave the key field empty and click **Save key**.
-2. Optional: if you connected Claude Code, Codex or Claude Desktop, click **Revoke token** under **Settings → AI clients**, or remove the `exe-loading` entry from the client's MCP configuration yourself.
+1. Optional, before you disable the plugin: remove saved API keys. In **Chat**, open the AI controller and click **Remove saved key**; it removes the key of the provider saved for this project. For another provider, choose it, leave the key field blank, click **Save** and then **Remove saved key**; if you keep using eXe, choose your usual provider and model again and click **Save**. To remove a key for asset generation, open **Settings → Asset generation**, choose the provider, leave the key field empty and click **Save key**.
+2. Optional: if you connected Claude Code, Codex or Claude Desktop, click **Revoke token** under **Settings → AI clients** and then remove the `exe-loading` entry from each client's MCP configuration (`~/.claude.json`, `~/.codex/config.toml`, `claude_desktop_config.json`). **Revoke token** only makes the key invalid; the entries stay, and the clients then report a server error for eXe. The Claude Desktop entry contains the local key in plain text.
 3. Disable **eXe Agent** in **Edit → Plugins** and restart the editor.
-4. Optional: delete `<YourProject>/Saved/eXe.Loading` to remove all eXe jobs, chats and settings of that project, `<YourProject>/ProjectDocs/eXe` to remove eXe's documents, and `%LOCALAPPDATA%\eXe.Loading` to remove the settings for all your projects. Keys left in Windows Credential Manager can be removed there; their names start with `eXe.Loading/`.
+4. Optional: delete `<YourProject>/Saved/eXe.Loading` to remove all eXe jobs, chats and settings of that project, `<YourProject>/ProjectDocs/eXe` to remove eXe's documents, and `%LOCALAPPDATA%\eXe.Loading` to remove the settings for all your projects. Keys left in Windows Credential Manager can be removed there; their names start with `eXe.Loading/`. This also covers keys of providers you used earlier.
+5. Optional: delete `<YourProject>/GeneratedAssets` if you generated assets and do not need the files, and `<YourProject>/Saved/VibeUE` and `<YourProject>/Saved/Config/VibeUE.ini`. eXe's window settings (theme, language, sidebar) stay in the editor's settings files; they do nothing without the plugin.
+6. To remove the plugin files from your Engine, open the Epic Games Launcher, go to your Unreal Engine 5.8 installation and remove **eXe Agent** from its installed plugins. Disabling the plugin in **Edit → Plugins** does not delete files.
 
 ## Do not
 

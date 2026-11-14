@@ -19,7 +19,7 @@ On this page:
 **Likely causes:** a required Engine plugin is disabled, or a Python dependency conflict with another plugin.
 
 1. Open **Settings → Connection** and read the reason (table below).
-2. Check **Edit → Plugins**: **Python Editor Script Plugin**, **Model Context Protocol** and **Toolset Registry** are enabled.
+2. Check **Edit → Plugins**: **Python Editor Script Plugin**, **Model Context Protocol**, **Toolset Registry** and **All Toolsets** are enabled.
 3. Open **Window → Output Log** and filter for `LogPython` and for `eXe`. A dependency conflict is named there.
 4. Close the editor and open the project again. Do not run `pip install` and do not reload Python modules by hand.
 
@@ -30,6 +30,7 @@ On this page:
 | **Unreal's own Python (Engine/Binaries/ThirdParty/Python3) is missing. Verify the engine installation in the Epic Games Launcher.** | In the Epic Games Launcher, open the engine's menu and choose **Verify** |
 | **eXe was started for a different project setup. Restart the editor.** | Restart the editor |
 | **eXe's start script gave no answer. Check the Output Log for LogPython errors.** | Look for `LogPython` errors and send them to support |
+| **EDITOR_PYTHON_DEPENDENCY_ALREADY_LOADED:** followed by a package name and a path | Another plugin loaded its own copy of a Python package that eXe needs before eXe started. The path shows which plugin it is. Disable that plugin for this project in **Edit → Plugins** and restart the editor. Do not run `pip install`. If you need both plugins, send the full line to support |
 
 **Setup**, **Start** or **Recovery** appears under **Settings → Connection** when eXe Core is not running. Each one starts eXe Core again.
 
