@@ -24,7 +24,7 @@ Current reports are collected in the `#known-issues` channel on [Discord](https:
 - **No proxy for the built-in chat.** The eXe chat and asset generation connect to the provider directly and do not use a system proxy. In a network that reaches the internet only through a proxy, use Claude Code or Codex instead.
 - **Changes outside eXe.** Changes made by an AI client with its own tools, or through a direct connection to Unreal's MCP server, are not checked, approved or revertible by eXe.
 - **Not every Unreal task is covered.** Creating a new level, building lighting and packaging the game are not eXe steps in 1.0; do them in Unreal yourself.
-- **Edit → Undo does not cover eXe.** eXe's changes are not entries in the editor's undo history. Revert them in **Changes** or **Jobs**.
+- **Edit → Undo is not supported for eXe's changes.** Some eXe steps appear in the editor's undo history and others do not, and eXe does not track what Undo changes. Revert them in **Changes** or **Jobs**.
 - **Files under source control.** eXe does not check files out. A read-only file, for example a Perforce file that is not checked out, cannot be saved. Check out the files a plan names before you approve it.
 - **Menu names.** This documentation uses the English editor menus. In a translated editor the menus have translated names.
 - **Some texts are always English.** Replies come in English unless you change **eXe replies in** under **Settings → General**. Plan headings exist only in English and German, and some detail messages from the eXe core (tooltips, error reasons) are always in English.

@@ -143,7 +143,7 @@ Yes. Set **Settings → Permissions → Plan before changes** to **Always**. The
 In the chat, click **Stop** to stop the current reply. In **Jobs**, select the job and click **Stop work** or **Cancel work**; both end the job the same way. While the job runs, they only record a different word (**Stopped** or **Cancelled**); a plan that has not started is recorded as **Cancelled**. Changes from finished steps stay listed under **Changes**, and you can revert them where eXe kept a copy.
 
 ### How do I undo a change?
-Above the chat input, **Changes** lists what finished jobs changed. Select a row and click **Revert** to put it back to the state before the job; the current version is kept as a backup. In **Jobs**, **Undo this job's changes** reverts a whole job. eXe keeps its copies for 14 days and keeps none for World Partition actor files or files over 64 MB, so also use version control. **Edit → Undo** (Ctrl+Z) is not a way to undo eXe's changes.
+Above the chat input, **Changes** lists what finished jobs changed. Select a row and click **Revert** to put it back to the state before the job; the current version is kept as a backup. In **Jobs**, **Undo this job's changes** reverts a whole job. eXe keeps its copies for 14 days and keeps none for World Partition actor files or files over 64 MB, so also use version control. **Edit → Undo** (Ctrl+Z) is not a supported way to undo eXe's changes: only some steps appear in the editor's undo history.
 
 ### What are Power Write and YOLO?
 **Power Write** lets approved plans change C++ and other source files and run Python scripts. Unreal's Undo does not cover these changes. **YOLO** lets eXe approve and run plans from local or signed-in AI clients without asking you, for up to 90 minutes per job. Both are off after installation and apply to all your projects. The header shows a warning while YOLO is on.
@@ -200,7 +200,7 @@ Based on Epic's documentation for the 5.9 Preview, as of November 2026:
 | AI | Your own API key (OpenAI, Anthropic, Gemini, DeepSeek), a local model (Ollama, LM Studio), Claude Code, Codex, Claude Desktop or ChatGPT | Epic's Unreal Assistant service, or Claude Code, Codex, Cursor, OpenCode or a custom agent signed in with your own account |
 | Plan before changes | eXe's own plan with exact targets and the targets that must not change; larger work waits for your approval in the chat | Depends on the agent's own modes, for example Claude Code's Plan mode. Epic's service has the levels Ask, Read, Edit, Auto and Full |
 | Checking the result | eXe reads the result back from the editor and ends every job with a result level, for example **Goal verified** | Epic's documentation describes no separate check |
-| Undo | Every change is listed; revert a file or a whole job from eXe's saved copies (kept 14 days); **Edit → Undo** does not cover eXe's steps | Epic's documentation describes no undo for agent runs; **Edit → Undo** works as usual |
+| Undo | Every change is listed; revert a file or a whole job from eXe's saved copies (kept 14 days); **Edit → Undo** is not supported for eXe's steps | Epic's documentation describes no undo for agent runs; **Edit → Undo** works as usual |
 
 Epic may change its assistant before the final 5.9 release. For its current features, see [Epic's documentation](https://dev.epicgames.com/documentation/unreal-engine/run-external-ai-agents-in-the-unreal-assistant-panel-in-unreal-engine).
 

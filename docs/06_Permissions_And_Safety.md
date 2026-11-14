@@ -120,7 +120,7 @@ eXe saves exactly the assets an approved step changed and nothing else. Your oth
 - Files someone changed after the job and unsaved editor changes are left alone and listed. C++ changes need a new build afterwards.
 - eXe keeps the saved copies for 14 days. After that the change leaves the **Changes** list; **Jobs** still shows it, but it can no longer be put back.
 - Not covered: World Partition actor files (One File Per Actor) and files over 64 MB. eXe keeps no copy of them, so it cannot put them back. Changes an AI client made with its own tools are not covered either.
-- **Edit → Undo** (Ctrl+Z) is not a way to undo eXe's changes: eXe's steps are not entries in the editor's undo history. Use **Revert** in **Changes** or **Undo this job's changes** in **Jobs**.
+- **Edit → Undo** (Ctrl+Z) is not a supported way to undo eXe's changes. Some eXe steps appear in the editor's undo history and others do not, depending on the editor tool behind them, and eXe does not track what Undo changes. After Undo, eXe may no longer be able to revert that asset. Use **Revert** in **Changes** or **Undo this job's changes** in **Jobs** instead.
 
 Use version control (for example Git, Perforce or Diversion) for every project you work on with AI.
 
