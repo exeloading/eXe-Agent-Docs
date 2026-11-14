@@ -16,7 +16,7 @@ Publisher: eXe.Loading
 - **You stay in control.** Small, clear changes you ask for run directly and are checked. Larger work starts as a plan with exact targets and runs only after you approve it. **Plan before changes** in the settings can require a plan for every change.
 - **Let it do the work.** Within what you approved, eXe edits Blueprints, assets, levels and (with Power Write) C++ source, saves, compiles and repairs failed steps inside the approved scope.
 - **See what was proven.** Every job ends with a result level, for example **Goal verified** when eXe read the changed values back from the editor.
-- **Review and undo changes.** Finished jobs list the files and assets they changed, with diff, keep and revert.
+- **Review and undo changes.** Finished jobs list the files and assets they changed, with a diff for text files, keep and revert.
 - **Use the AI you already have.** Chat inside Unreal with your own OpenAI, Anthropic, Gemini or DeepSeek key or a local model, or connect Claude Code, Codex, Claude Desktop or ChatGPT.
 - **Useful without any AI provider.** The **Tools** view checks assets, finds stacked actors, explains a Blueprint, lists dependencies and builds the project.
 
