@@ -2,7 +2,7 @@
 
 Everything in eXe happens in one dockable editor window called **eXe Agent**. Open it with the **eXe Agent** toolbar button, **Window → eXe Agent** or **Ctrl+Shift+Space**. The arrow next to the toolbar button opens a view directly.
 
-The header shows your project and the state of eXe: **eXe running**, **eXe running · n job(s) running**, **eXe running · Unreal MCP is off, see Settings**, **Starting...**, **Reconnecting...** or **eXe could not start · see Settings**. Below it are four views: **Chat**, **Jobs**, **Tools** and **Settings**. When a job needs your decision, the view label reads **Jobs (n)** and the toolbar tooltip says so too.
+The header shows your project and the state of eXe: **eXe running**, **eXe running · n job(s) running**, **eXe running, no project**, **eXe running · Unreal MCP is off, see Settings**, **eXe running · check Unreal MCP in Settings**, **Starting...**, **Reconnecting...** or **eXe could not start · see Settings**. Below it are four views: **Chat**, **Jobs**, **Tools** and **Settings**. When a job needs your decision, the view label reads **Jobs (n)** and the toolbar tooltip says so too.
 
 ## Chat
 
@@ -40,7 +40,7 @@ Above the message box, **Changes (n)** lists the files and assets that finished 
 - **Revert** puts the selected files and assets back to the state before the job. The current version is kept as a backup.
 - **All chats** also shows changes made from other chats and AI clients in this project.
 
-Changes stay recorded for 14 days. You can hide the list under **Settings → General**.
+Changes stay recorded for 14 days and can be reverted during that time. You can hide the list under **Settings → General**.
 
 ## Jobs
 
@@ -51,7 +51,7 @@ Select a job to see:
 - **Plan and decision:** the full plan text with targets, expected changes, **May change only**, **Must not change** and **May repair**. A long plan is paged. You approve a plan or a build in the chat where it was planned (the eXe chat or your AI client), not here. Buttons, depending on the state: **Request revision**, **Later** (for a build), **Stop work**, **Cancel work**. For a revision, describe what you want in the text box (at least 20 characters).
 - **Progress:** the current and next step.
 - **Result and checks:** how far the result is proven and every check that ran.
-- **Steps:** what each step did. For game tests, **Open PIE screenshot** shows the picture taken after a game step.
+- **Steps:** what each step did. For game tests, **Show PIE screenshot** shows the picture taken after a game step.
 - For finished jobs: **Show changes** and **Undo this job's changes**.
 - **Copy summary** copies a short report. **Copy for support** copies the technical details of the job for a bug report.
 
@@ -91,6 +91,7 @@ Settings are grouped. Use **Search settings** to find an option.
 | **General** | Interface language, reply language, changes list, theme, builds, project rules |
 | **Permissions** | Power Write, YOLO and Plan before changes ([Permissions and Safety](06_Permissions_And_Safety.md)) |
 | **AI clients (Claude Code, Codex, Claude Desktop)** | Copy start commands, connect, renew or revoke the access token ([Connect AI Providers](04_Connect_AI_Providers.md)) |
+| **Blender and your own MCP servers** | Check a Blender you have open (needs the free add-on MCP for Blender), and add your own MCP servers as extra tools for Claude Code and Codex |
 | **ChatGPT and remote access** | Tunnel access with or without sign-in ([Remote Access with ChatGPT](07_Remote_Access_ChatGPT.md)) |
 | **Asset generation** | Generate 3D models, images and sound effects with your own provider key or local server ([Capabilities](05_Capabilities.md#asset-generation)) |
 | **Advanced** | Diagnostics for support |

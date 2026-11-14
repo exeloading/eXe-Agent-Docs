@@ -11,12 +11,11 @@ All eXe network endpoints listen on `127.0.0.1` only (by default ports 8798 to 8
 | You use... | Data that leaves your PC | Goes to |
 |---|---|---|
 | **Tools** view | Nothing | Nobody |
-| Chat with a cloud provider | Your messages, attached images, and the project information the AI requests (file contents, asset data, logs) | The provider you chose (OpenAI, Anthropic, Google Gemini, DeepSeek or an endpoint you enter), under their terms |
+| Chat with a cloud provider | Your messages, attached images, and the project information the AI requests (file contents, asset data, logs) | The provider you chose (OpenAI, Anthropic, Google Gemini or DeepSeek), under their terms |
 | Chat with a local model | Nothing, if your model runs on your PC | Your local model |
-| Claude Code, Codex, Claude Desktop | What that client sends to its provider | Anthropic or OpenAI under your account |
+| Claude Code, Codex, Claude Desktop | What that client sends to its provider. Claude Desktop also downloads the npm package `mcp-remote` to reach eXe | Anthropic or OpenAI under your account; the npm registry (registry.npmjs.org) |
 | ChatGPT remote access | Requests and answers through your tunnel | Your tunnel provider, your sign-in service and OpenAI |
-| Asset generation | Your description, and for image to 3D the source image; eXe asks before each request | The service you chose (Meshy, Tripo, OpenAI, Stability AI, ElevenLabs) or your local server |
-| Bundled VibeUE tools with online features | Only when an AI calls such a tool, for example a web search query | The services listed in `Resources/THIRD_PARTY_NOTICES.md` |
+| Asset generation | Your description; eXe asks before each request. The finished file is downloaded from the address the service returns | The service you chose (Meshy, Tripo, OpenAI, Stability AI, ElevenLabs) or your local server |
 
 Check your provider's data policy before you send confidential project content.
 

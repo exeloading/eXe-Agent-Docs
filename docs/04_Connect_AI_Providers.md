@@ -20,7 +20,7 @@ Model usage is billed by your provider under your own account. The chat shows th
 
 ### Local models
 
-Choose **Local model** and enter the address of your local server. The default is `http://127.0.0.1:11434/v1` (Ollama). Any server with an OpenAI-compatible `/v1` API and tool support works the same way. A key is only needed if your local server asks for one.
+Choose **Local model** and enter the address of your local server. The default is `http://127.0.0.1:11434/v1` (Ollama). Any server on this PC with an OpenAI-compatible `/v1` API and tool support works the same way, for example LM Studio. The address must be on this PC (`127.0.0.1` or `localhost`) and end in `/v1`. Version 1.0 does not accept a server on another computer or any other address you enter; the cloud providers above always use their official address. A key is only needed if your local server asks for one.
 
 You install, start and choose local models yourself. eXe sends about 20,000 tokens of instructions and tool descriptions with every request, so set the context length of your local server to at least 32,768 tokens (in Ollama: the **Context length** setting or the environment variable `OLLAMA_CONTEXT_LENGTH`). Small local models plan less reliably than large hosted models. If eXe reports that the model did not produce a usable tool call, send the message again or choose a stronger model.
 
@@ -33,9 +33,9 @@ If you have the official **Claude Code**, **Codex** or **Claude Desktop** instal
 3. For Claude Code or Codex, click **Copy Claude Code command** or **Copy Codex command**. eXe shows the copied line.
 4. Open a new terminal (**PowerShell** or **Command Prompt**), paste the line and press Enter. This starts the client, so you do not open it first. Sign in there if the client asks.
 
-The copied line opens the client in an eXe workspace folder for this project that contains the eXe planning workflow. Claude Desktop needs no command: after step 2, restart it and eXe is available there.
+The copied line opens the client in an eXe workspace folder for this project that contains the eXe planning workflow. Claude Desktop needs no command: after step 2, restart it and eXe is available there. Two things must be in place before step 2: Claude Desktop was started at least once, and [Node.js](https://nodejs.org) is installed. Claude Desktop reaches eXe through the small npm package `mcp-remote`, which it downloads from the npm registry and runs itself; eXe never starts it.
 
-eXe never installs these clients and never starts them. They use your own subscription or login. Blueprint, asset and C++ changes still run only through eXe: small, clear requests directly, larger work after you approve the plan.
+eXe never installs these clients and never starts them. They use your own subscription or login. The copied line signs in with your Claude or ChatGPT account; if your client is signed in with an API key instead, start it yourself as usual. The `exe-loading` entry from step 2 is already in its configuration. Blueprint, asset and C++ changes still run only through eXe: small, clear requests directly, larger work after you approve the plan.
 
 **Check status** shows the connection state. **Renew token** replaces the access key. **Revoke token** removes access until you connect again.
 
